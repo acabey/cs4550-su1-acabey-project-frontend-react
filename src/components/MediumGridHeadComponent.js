@@ -2,7 +2,7 @@ import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFolder, faList, faSortAlphaDown, faSortAlphaUp} from "@fortawesome/free-solid-svg-icons";
 
-const CourseGridHeadComponent = ({sortState, toggleSort, toggleLayout}) =>
+const MediumGridHeadComponent = ({sortState, toggleSort, toggleLayout}) =>
     <div className="row justify-content-center">
         <div className="col-4">
             <span>Recent Documents</span>
@@ -25,4 +25,4 @@ const CourseGridHeadComponent = ({sortState, toggleSort, toggleLayout}) =>
         </div>
     </div>
 
-export default CourseGridHeadComponent;
+export default MediumGridHeadComponent;
