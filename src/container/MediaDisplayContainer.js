@@ -270,8 +270,19 @@ class MediaDisplayContainer extends React.Component {
             <NavComponent searchTitleInputHandler={event => {this.setState({'searchTitle': event.target.value})}}
                           searchButtonInputHandler={this.searchButtonInputHandler}/>
 
+            <h1>Top Picks</h1>
             <MediumGridComponent
                 media={this.state.media}/>
+
+
+            <h1>Friends are Watching</h1>
+            <MediumGridComponent
+                media={this.state.media}/>
+
+            <h1>Popular Wishlists</h1>
+            <MediumGridComponent
+                media={this.state.media}/>
+
         </Container>
 }
 

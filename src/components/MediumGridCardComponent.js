@@ -4,6 +4,8 @@ import {faTrash, faPencilAlt, faCheck, faBan, faFile} from '@fortawesome/free-so
 import MediumListComponent from "./MediumListComponent";
 import {Link} from "react-router-dom";
 
+const TVDBUrl = 'https://thetvdb.com';
+
 class MediumGridCardComponent extends MediumListComponent {
 
     render = () =>
@@ -11,7 +13,7 @@ class MediumGridCardComponent extends MediumListComponent {
             <div className={`card ${this.state.isSelected && 'bg-primary'}`}
                  onClick={() => this.toggleSelected()}>
                 <img className="card-img-top"
-                     src={this.props.medium.image}
+                     src={`${TVDBUrl}${this.props.medium.image}`}
                      alt="Card image cap"/>
                 <div className="card-body">
                     <div>
@@ -21,7 +23,7 @@ class MediumGridCardComponent extends MediumListComponent {
                             <span className="card-seriesName">{this.props.medium.seriesName}</span>
                         </Link>
                     </div>
-                    <p className="card-text">{`Modified ${this.props.medium.banner}`}</p>
+                    <p className="card-text">{this.props.medium.overview}</p>
 
                     <div>
                         <button onClick={(event) => this.toggleEditing()}

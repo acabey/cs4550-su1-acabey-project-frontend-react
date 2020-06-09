@@ -20,7 +20,7 @@ class MediumGridComponent extends MediumListComponent {
                         this.sortMedia(this.props.media).map(medium =>
                             <MediumGridCardComponent
                                 medium={medium}
-                                key={medium._id}/>
+                                key={medium.id}/>
                         )
                     }
                 </div>
