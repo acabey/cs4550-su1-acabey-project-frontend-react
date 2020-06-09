@@ -1,10 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTrash, faPencilAlt, faCheck, faBan, faFile} from '@fortawesome/free-solid-svg-icons'
-import MediumListMediumComponent from "./MediumListMediumComponent";
+import MediumListComponent from "./MediumListComponent";
 import {Link} from "react-router-dom";
 
-class MediumGridCardComponent extends MediumListMediumComponent {
+class MediumGridCardComponent extends MediumListComponent {
 
     render = () =>
         <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2">

@@ -1,11 +1,10 @@
 import React from 'react';
-import MediumGridHeadComponent from "./components/MediumGridHeadComponent";
-import MediumGridComponent from "./components/MediumGridComponent";
+import MediaDisplayContainer from "./container/MediaDisplayContainer";
 
 function WhatToWatch() {
   return (
     <div className="App">
-        <MediumGridComponent/>
+        <MediaDisplayContainer/>
     </div>
   );
 }

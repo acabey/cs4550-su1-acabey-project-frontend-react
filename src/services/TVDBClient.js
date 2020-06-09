@@ -1,4 +1,3 @@
-"use strict";
 class TVDBClient {
 
     url = 'https://api.thetvdb.com';
@@ -33,6 +32,14 @@ class TVDBClient {
         }).then((tokenResponse) => {
             this.token = tokenResponse['token']
         });
+    }
+
+    /**
+     *
+     * @returns {Promise<any>} Array of JSON course objects
+     */
+    findTopSeries() {
+        return [];
     }
 
     /**
