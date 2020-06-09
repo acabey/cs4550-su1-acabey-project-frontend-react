@@ -17,7 +17,6 @@ class MediaDisplayContainer extends React.Component {
         super(props);
 
         this.tvdbClient = new TVDBClient();
-
     }
 
     componentDidMount = () => {
@@ -38,6 +37,15 @@ class MediaDisplayContainer extends React.Component {
 
     render = () =>
         <Container fluid={true}>
+
+            <input type={"text"}
+                   className={"form-control"}
+                   onChange={
+                       event => {this.setState({'searchTitle': event.target.value})}
+                   }
+                   value={this.state.searchTitle}
+            />
+
             <MediumGridComponent
                 media={this.state.media}/>
         </Container>

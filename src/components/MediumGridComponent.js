@@ -14,19 +14,12 @@ class MediumGridComponent extends MediumListComponent {
 
     render = () =>
         <div>
-
-            <MediumGridHeadComponent sortState={this.state.sortDescription}
-                                     toggleSort={this.toggleSort}
-                                     toggleLayout={this.props.toggleLayout}/>
-
             <div className="ml-2 mr-2">
                 <div className="row">
                     {
                         this.sortMedia(this.props.media).map(medium =>
                             <MediumGridCardComponent
                                 medium={medium}
-                                deleteMedium={this.props.deleteMedium}
-                                updateMedium={this.props.updateMedium}
                                 key={medium._id}/>
                         )
                     }
