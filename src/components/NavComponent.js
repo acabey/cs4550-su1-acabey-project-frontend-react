@@ -3,7 +3,7 @@ import {faList, faPlus, faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
 
-const CourseNavComponent = ({courseTitleInputHandler, courseAddInputHandler}) =>
+const NavComponent = ({searchTitleInputHandler, searchButtonInputHandler}) =>
     <nav className="navbar navbar-expand navbar-light bg-white justify-content-between fixed-top wbdv-navbar">
         <div className="collapse navbar-collapse">
             <ul className="navbar-nav">
@@ -16,26 +16,25 @@ const CourseNavComponent = ({courseTitleInputHandler, courseAddInputHandler}) =>
                        aria-haspopup="true"
                        aria-expanded="false">
                         <span className="wbdv-field wbdv-hamburger mr-2"><FontAwesomeIcon icon={faList} size={'1x'}/></span>
-                        <span className="wbdv-label wbdv-course-manager d-none d-md-inline">Course Manager</span>
+                        <span className="wbdv-label wbdv-course-manager d-none d-md-inline">What to Watch</span>
                     </a>
                     <div className="dropdown-menu">
-                        <a href="#" className="dropdown-item active">Course List</a>
-                        <a href="/editor"
-                           className="dropdown-item">Course Editor</a>
+                        <Link to="/" className="dropdown-item active">Example</Link>
+                        <Link to="/" className="dropdown-item">Example</Link>
                     </div>
                 </li>
             </ul>
 
             <input className="form-control mr-4 bg-transparent-0 rounded-0 wbdv-field wbdv-new-course"
                    type="text"
-                   placeholder="New Course"
-                   aria-label="New Course"
-                   onChange={courseTitleInputHandler}/>
+                   placeholder="Search"
+                   aria-label="Search media"
+                   onChange={searchTitleInputHandler}/>
 
             <div className="navbar-light navbar-nav">
                 <a
                     className="btn nav-link wbdv-button wbdv-add-course"
-                    onClick={courseAddInputHandler}>
+                    onClick={searchButtonInputHandler}>
                     <FontAwesomeIcon icon={faPlus} size={'2x'}/>
                 </a>
             </div>
@@ -58,4 +57,4 @@ const CourseNavComponent = ({courseTitleInputHandler, courseAddInputHandler}) =>
         </div>
     </nav>;
 
-export default CourseNavComponent
+export default NavComponent

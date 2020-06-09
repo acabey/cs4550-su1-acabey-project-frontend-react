@@ -2,6 +2,7 @@ import React from "react";
 import {Container} from "react-bootstrap";
 import TVDBClient from "../services/TVDBClient";
 import MediumGridComponent from "../components/MediumGridComponent";
+import NavComponent from "../components/NavComponent";
 
 
 class MediaDisplayContainer extends React.Component {
@@ -35,16 +36,19 @@ class MediaDisplayContainer extends React.Component {
         }
     };
 
+    searchButtonInputHandler = () => {
+        this.setState((prevState) => (
+            {
+                'media': this.tvdbClient.searchSeries(prevState.searchTitle)
+            })
+        )
+    };
+
     render = () =>
         <Container fluid={true}>
 
-            <input type={"text"}
-                   className={"form-control"}
-                   onChange={
-                       event => {this.setState({'searchTitle': event.target.value})}
-                   }
-                   value={this.state.searchTitle}
-            />
+            <NavComponent searchTitleInputHandler={event => {this.setState({'searchTitle': event.target.value})}}
+                          searchButtonInputHandler={this.searchButtonInputHandler}/>
 
             <MediumGridComponent
                 media={this.state.media}/>
