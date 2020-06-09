@@ -55,8 +55,8 @@ class TVDBClient {
                 }
             ),
             headers: {
-                'content-type': 'application/json'
-                `Authorization: Bearer ${this.token}`
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${this.token}`
             }
         }).then((response) => {
             return response.json()

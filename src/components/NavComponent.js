@@ -1,5 +1,5 @@
 import React from "react";
-import {faList, faPlus, faUserCircle} from "@fortawesome/free-solid-svg-icons";
+import {faList, faSearch, faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
 
@@ -35,7 +35,7 @@ const NavComponent = ({searchTitleInputHandler, searchButtonInputHandler}) =>
                 <a
                     className="btn nav-link wbdv-button wbdv-add-course"
                     onClick={searchButtonInputHandler}>
-                    <FontAwesomeIcon icon={faPlus} size={'2x'}/>
+                    <FontAwesomeIcon icon={faSearch} size={'2x'}/>
                 </a>
             </div>
 

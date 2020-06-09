@@ -37,11 +37,13 @@ class MediaDisplayContainer extends React.Component {
     };
 
     searchButtonInputHandler = () => {
-        this.setState((prevState) => (
-            {
-                'media': this.tvdbClient.searchSeries(prevState.searchTitle)
-            })
-        )
+        let searchResult = this.tvdbClient.searchSeries(this.state.searchTitle);
+        console.log(searchResult);
+        //this.setState((prevState) => (
+        //    {
+        //        media: this.tvdbClient.searchSeries(prevState.searchTitle)
+        //    })
+        //)
     };
 
     render = () =>
