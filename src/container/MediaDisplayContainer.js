@@ -4,7 +4,6 @@ import TVDBClient from "../services/TVDBClient";
 import MediumGridComponent from "../components/MediumGridComponent";
 import NavComponent from "../components/NavComponent";
 
-
 class MediaDisplayContainer extends React.Component {
 
     state = {
@@ -17,15 +16,13 @@ class MediaDisplayContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.tvdbClient = new TVDBClient();
+        //this.tvdbClient = new TVDBClient();
+        const TVDB = require('node-tvdb');
+        this.tvdb = new TVDB('e5094420c444a38c3b46f926de91dde3');
+
     }
 
     componentDidMount = () => {
-        //this.tvdbClient.findAllCourses()
-        //    .then(actualArrayOfCourses =>
-        //        this.setState({
-        //            courses: actualArrayOfCourses
-        //        }))
     };
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
@@ -37,7 +34,11 @@ class MediaDisplayContainer extends React.Component {
     };
 
     searchButtonInputHandler = () => {
-        let searchResult = this.tvdbClient.searchSeries(this.state.searchTitle);
+        let searchResult = [];
+
+        this.tvdb.getSeriesByName(this.state.searchTitle)
+            .then(response => { searchResult = response.data })
+            .catch(error => { console.log(error) });
         console.log(searchResult);
         //this.setState((prevState) => (
         //    {
