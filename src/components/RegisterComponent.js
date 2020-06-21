@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import userService from "../services/userService";
 
 class RegisterComponent extends React.Component {
 
@@ -7,23 +8,17 @@ class RegisterComponent extends React.Component {
         username: '',
         password: ''
     }
+
+
     register = () => {
-        fetch("http://localhost:8080/api/login", {
-            body: JSON.stringify({username: this.state.username, password: this.state.password}),
-            headers: {
-                'content-type': 'application/json'
-            },
-            method: 'POST',
-            credentials: "include"
-        }).then(response => response.json())
+        userService.register(this.state.username, this.state.password)
             .then(currentUser => {
                 if(currentUser)
                     this.props.history.push("/profile")
             })
+    };
 
-    }
-
-    render = () => (
+    render = () =>
         <div class="container">
             <h1>Register</h1>
 
@@ -90,7 +85,6 @@ class RegisterComponent extends React.Component {
                 </form>
             </div>
         </div>
-    )
 };
 
 export default RegisterComponent
