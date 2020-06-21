@@ -1,38 +1,33 @@
 const initialState = {
-    widgets: [],
+    media: [],
 };
 
-const widgetReducer = (state=initialState, event) => {
+const mediumReducer = (state=initialState, event) => {
     switch (event.type) {
-        case "CREATE_WIDGET":
+        case "CREATE_MEDIUM":
             return {
-                widgets: [
-                    ...state.widgets,
-                    event.newWidget
+                media: [
+                    ...state.media,
+                    event.newMedium
                 ]
             };
             break
-        case "DELETE_WIDGET":
+        case "DELETE_MEDIUM":
             return {
-                widgets: state.widgets.filter(widget => widget.id !== event.widgetId)
+                media: state.media.filter(medium => medium.id !== event.mediumId)
             };
             break
-        case "UPDATE_WIDGET":
+        case "UPDATE_MEDIUM":
             return {
                 ...state,
-                widgets: state.widgets.map(
-                    widget => widget.id === event.updatedWidget.id ?
-                        event.updatedWidget : widget )
+                media: state.media.map(
+                    medium => medium.id === event.updatedMedium.id ?
+                        event.updatedMedium : medium )
             };
-        case "FIND_WIDGETS_FOR_TOPIC":
+        case "FIND_MEDIA":
             return {
                 ...state,
-                widgets: event.widgets
-            };
-        case "FIND_ALL_WIDGETS":
-            return {
-                ...state,
-                widgets: event.widgets
+                media: event.media
             };
             break
         default:
@@ -40,4 +35,4 @@ const widgetReducer = (state=initialState, event) => {
     }
 };
 
-export default widgetReducer
+export default mediumReducer
