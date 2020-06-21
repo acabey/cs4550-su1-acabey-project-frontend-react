@@ -20,7 +20,13 @@ class ProfileComponent extends React.Component {
                 this.props.history.push("/login")
             })
             .then(user => {
-                if(user)
+                if(!user) {
+                    console.error(`Invalid response from server on login`)
+                }
+                else if (user.error) {
+                    this.setState({errorMessage: user.message})
+                }
+                else {
                     this.setState({
                         username: user.username,
                         password: user.password,
@@ -29,6 +35,7 @@ class ProfileComponent extends React.Component {
                         bio: user.bio,
                         imageUrl: user.imageUrl
                     })
+                }
             })
     };
 
@@ -65,10 +72,35 @@ class ProfileComponent extends React.Component {
             bio: this.state.bio,
             imageUrl: this.state.imageUrl
         })
-            .then(user => this.setState({
-                username: user.username, password: user.password
-            }))
+            .catch(e => {
+                this.props.history.push("/login")
+            })
+            .then(user => {
+                if(!user) {
+                    console.error(`Invalid response from server on update`)
+                }
+                else if (user.error) {
+                    this.setState({errorMessage: user.message})
+                }
+                else {
+                    this.setState({
+                        username: user.username,
+                        password: user.password,
+                        email: user.email,
+                        role: user.role,
+                        bio: user.bio,
+                        imageUrl: user.imageUrl
+                    })
+                }
+            })
     };
+
+    deleteUser = () => {
+        userService.deleteProfileByUsername(this.state.username)
+            .then(response => {
+                this.logout()
+            })
+    }
 
     logout = () => {
         userService.logout()
@@ -93,6 +125,26 @@ class ProfileComponent extends React.Component {
                                 message={this.state.errorMessage}
                                 clear={() => {this.setState({errorMessage: ''})}}/>
             }
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this account? This action cannot be undone
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" onClick={this.deleteUser}>Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div className="rounded border border-secondary bg-white">
                 <div className="m-4">
@@ -154,8 +206,8 @@ class ProfileComponent extends React.Component {
                                     id="role"
                                     value={this.state.role}
                                     onChange={(e) => {this.setState({role: e.target.value})}}>
-                                <option value="FACULTY">Faculty</option>
-                                <option value="STUDENT">Student</option>
+                                <option value="USER">User</option>
+                                <option value="MODERATOR">Moderator</option>
                                 <option value="ADMIN">Admin</option>
                             </select>
                         </div>
@@ -214,8 +266,8 @@ class ProfileComponent extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <button className="btn btn-danger btn-block wbdv-button wbdv-delete"
-                                    onClick={this.deleteModal}>
+                            <button type="button" className="btn btn-danger btn-block wbdv-button wbdv-delete" data-toggle="modal"
+                                    data-target="#exampleModal">
                                 Delete this account
                             </button>
                         </div>
