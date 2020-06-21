@@ -1,13 +1,9 @@
 import React from "react";
-import {Container} from "react-bootstrap";
-import TVDBClient from "../services/TVDBClient";
 import MediumGridComponent from "../components/MediumGridComponent";
-import NavComponent from "../components/NavComponent";
 
 class MediaDisplayContainer extends React.Component {
 
     state = {
-        layout: this.props.match.params.layout,
         media: [
             {
                 "aliases": [
@@ -225,7 +221,7 @@ class MediaDisplayContainer extends React.Component {
                 "slug": "301773",
                 "status": "Ended"
             }
-            ],
+        ],
         searchTitle: ''
     };
 
@@ -243,47 +239,11 @@ class MediaDisplayContainer extends React.Component {
     };
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
-        if(prevProps.match.params.layout !== this.props.match.params.layout) {
-            this.setState({
-                layout: this.props.match.params.layout
-            })
-        }
-    };
-
-    searchButtonInputHandler = () => {
-        //let searchResult = [];
-
-        //this.tvdb.getSeriesByName(this.state.searchTitle)
-        //    .then(response => { searchResult = response.data })
-        //    .catch(error => { console.log(error) });
-        //console.log(searchResult);
-        //this.setState((prevState) => (
-        //    {
-        //        media: this.tvdbClient.searchSeries(prevState.searchTitle)
-        //    })
-        //)
     };
 
     render = () =>
-        <Container fluid={true}>
-
-            <NavComponent searchTitleInputHandler={event => {this.setState({'searchTitle': event.target.value})}}
-                          searchButtonInputHandler={this.searchButtonInputHandler}/>
-
-            <h1>Top Picks</h1>
-            <MediumGridComponent
-                media={this.state.media}/>
-
-
-            <h1>Friends are Watching</h1>
-            <MediumGridComponent
-                media={this.state.media}/>
-
-            <h1>Popular Wishlists</h1>
-            <MediumGridComponent
-                media={this.state.media}/>
-
-        </Container>
+        <MediumGridComponent
+            media={this.state.media}/>
 }
 
 export default MediaDisplayContainer

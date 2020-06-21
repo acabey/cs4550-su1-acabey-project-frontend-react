@@ -1,5 +1,5 @@
 import React from 'react'
-import MediumGridCardComponent from "./MediumGridCardComponent";
+import MediumCardComponent from "./MediumCardComponent";
 import MediumListComponent from "./MediumListComponent";
 import MediumGridHeadComponent from "./MediumGridHeadComponent";
 
@@ -18,7 +18,7 @@ class MediumGridComponent extends MediumListComponent {
                 <div className="row">
                     {
                         this.sortMedia(this.props.media).map(medium =>
-                            <MediumGridCardComponent
+                            <MediumCardComponent
                                 medium={medium}
                                 key={medium.id}/>
                         )
