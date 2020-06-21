@@ -1,33 +1,33 @@
 const initialState = {
-    media: [],
+    watchlists: [],
 };
 
-const mediumReducer = (state=initialState, event) => {
+const watchlistReducer = (state=initialState, event) => {
     switch (event.type) {
-        case "CREATE_MEDIUM":
+        case "CREATE_WATCHLIST":
             return {
-                media: [
-                    ...state.media,
-                    event.newMedium
+                watchlists: [
+                    ...state.watchlists,
+                    event.newWatchlist
                 ]
             };
             break
-        case "DELETE_MEDIUM":
+        case "DELETE_WATCHLIST":
             return {
-                media: state.media.filter(medium => medium.id !== event.mediumId)
+                watchlists: state.watchlists.filter(watchlist => watchlist.id !== event.watchlistId)
             };
             break
-        case "UPDATE_MEDIUM":
+        case "UPDATE_WATCHLIST":
             return {
                 ...state,
-                media: state.media.map(
-                    medium => medium.id === event.updatedMedium.id ?
-                        event.updatedMedium : medium )
+                watchlists: state.watchlists.map(
+                    watchlist => watchlist.id === event.updatedWatchlist.id ?
+                        event.updatedWatchlist : watchlist )
             };
-        case "FIND_MEDIA":
+        case "FIND_WATCHLISTS":
             return {
                 ...state,
-                media: event.media
+                watchlists: event.watchlists
             };
             break
         default:
@@ -35,4 +35,4 @@ const mediumReducer = (state=initialState, event) => {
     }
 };
 
-export default mediumReducer
+export default watchlistReducer

@@ -1,47 +1,54 @@
-const url = 'https://acabey-server-java.herokuapp.com/api';
-//const url = 'http://localhost:8080/api';
+//const url = 'https://acabey-server-java.herokuapp.com/api';
+const url = 'http://localhost:8080/api';
 
-export const createWidget = (topicId, widget) =>
-    fetch(`${url}/topics/${topicId}/widgets`, {
+export const createWatchlist = (userId, watchlist) =>
+    fetch(`${url}/users/${userId}/watchlists`, {
         method: 'POST',
-        body: JSON.stringify(widget),
+        body: JSON.stringify(watchlist),
         headers: {
             'content-type': 'application/json'
         }
     })
         .then(response => response.json());
 
-export const findWidgetsForTopic = (topicId) =>
-    fetch(`${url}/topics/${topicId}/widgets`)
+export const findWatchlistsForUser = (userId) =>
+    fetch(`${url}/users/${userId}/watchlists`)
         .then(response => response.json());
 
-export const findWidget = (widgetId) =>
-    fetch(`${url}/widgets/${widgetId}`, {
+export const findWatchlistById = (watchlistId) =>
+    fetch(`${url}/watchlists/${watchlistId}`, {
         method: 'GET'
     })
         .then(response => response.json());
 
-export const updateWidget = (widgetId, widget) =>
-    fetch(`${url}/widgets/${widgetId}`, {
+export const findAllWatchlists = (watchlistId) =>
+    fetch(`${url}/watchlists`, {
+        method: 'GET'
+    })
+        .then(response => response.json());
+
+export const updateWatchlist = (watchlistId, watchlist) =>
+    fetch(`${url}/watchlists/${watchlistId}`, {
         method: 'PUT',
-        body: JSON.stringify(widget),
+        body: JSON.stringify(watchlist),
         headers: {
             'content-type': 'application/json'
         }
     })
         .then(response => response.json());
 
-export const deleteWidget= (widgetId) =>
-    fetch(`${url}/widgets/${widgetId}`, {
+export const deleteWatchlist= (watchlistId) =>
+    fetch(`${url}/watchlists/${watchlistId}`, {
         method: 'DELETE'
     })
         .then(response => response.json());
 
 
 export default {
-    createWidget,
-    findWidgetsForTopic,
-    findWidget,
-    updateWidget,
-    deleteWidget
+    createWatchlist,
+    findWatchlistsForUser,
+    findWatchlistById,
+    findAllWatchlists,
+    updateWatchlist,
+    deleteWatchlist
 }

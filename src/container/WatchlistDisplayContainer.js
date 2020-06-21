@@ -16,7 +16,7 @@ class WatchlistDisplayContainer extends React.Component {
     };
 
     render = () =>
-        <div className={}
+        <div className={}/>
 }
 
 export default WatchlistDisplayContainer
