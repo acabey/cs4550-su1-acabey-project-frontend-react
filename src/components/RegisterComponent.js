@@ -14,18 +14,48 @@ class RegisterComponent extends React.Component {
     register = () => {
         userService.register(this.state.username, this.state.password)
             .then(currentUser => {
-                if(currentUser) {
-                    console.log(`Successful register: ${currentUser}`);
+                if(currentUser && !currentUser.error) {
+                    console.log(`Successful register: ${currentUser.username}`);
                     this.props.history.push("/profile")
                 }
                 else {
-                    console.log(`Non-successful register: ${currentUser}`);
+                    console.log(`Non-successful register: ${currentUser.message}`);
                 }
             })
             .catch((e) => {
                 console.log(`Error registering ${e.toString()}`)
             })
     };
+
+    thing= () => {
+        fetch("http://localhost:8080/api/register", {
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password
+            }),
+            headers: {
+                'content-type': 'application/json'
+            },
+            method: 'POST',
+            credentials: "include"
+        }).then(
+            response => {
+                return response.json()
+            })
+            .catch(e => {
+                console.log(`Error registering`);
+                this.setState({
+                    error: 'Unable to register'
+                })
+            })
+            .then(currentUser => {
+                console.log(currentUser.toString());
+                if(currentUser) {
+                    console.log(`Successful register: ${currentUser.username}`);
+                    //this.props.history.push("/profile")
+                }
+            })
+    }
 
     render = () =>
         <div className={"container"}>
@@ -83,30 +113,30 @@ class RegisterComponent extends React.Component {
                         </div>
                     </div>
 
-                    <div className={"form-group row"}>
-                        <label className={"col-sm-2 col-form-label"}></label>
-                        <div className={"col-sm-10"}>
-                            <div className={"form-group row"}>
-                                <button
-                                    className={"btn btn-primary btn-primary btn-block wbdv-button wbdv-register"}
-                                    onClick={this.register}>
-                                    Register
-                                </button>
+                </form>
+
+                <div className={"form-group row"}>
+                    <label className={"col-sm-2 col-form-label"}></label>
+                    <div className={"col-sm-10"}>
+                        <div className={"form-group row"}>
+                            <button
+                                className={"btn btn-primary btn-primary btn-block wbdv-button wbdv-register"}
+                                onClick={this.register}>
+                                Register
+                            </button>
+                        </div>
+                        <div className={"row"}>
+                            <div className={"col-6"}>
+                                <Link className={"wbdv-link wbdv-login"}
+                                      to="/login">Have an account already? Login</Link>
                             </div>
-                            <div className={"row"}>
-                                <div className={"col-6"}>
-                                    <Link className={"wbdv-link wbdv-login"}
-                                          to="/login">Have an account already? Login</Link>
-                                </div>
-                                <div className={"col-6"}>
-                                    <Link className={"float-right wbdv-link wbdv-cancel"}
-                                          to="/">Cancel</Link>
-                                </div>
+                            <div className={"col-6"}>
+                                <Link className={"float-right wbdv-link wbdv-cancel"}
+                                      to="/">Cancel</Link>
                             </div>
                         </div>
                     </div>
-
-                </form>
+                </div>
             </div>
         </div>
 };

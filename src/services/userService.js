@@ -23,7 +23,8 @@ export const register = (username, password) =>
     fetch(`${url}/register`, {
         body: JSON.stringify({
             username: username,
-            password: password}),
+            password: password
+        }),
         headers: {
             'content-type': 'application/json'
         },
