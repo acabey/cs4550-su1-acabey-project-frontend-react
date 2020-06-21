@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import userService from "../services/userService";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class RegisterComponent extends React.Component {
 
@@ -11,8 +13,32 @@ class RegisterComponent extends React.Component {
         errorMessage: ''
     };
 
+    validate = () => {
+        let message;
+        let isValid = true;
+
+        if (this.state.username === '') {
+            message = 'Username cannot be blank';
+            isValid = false;
+        }
+        else if (this.state.password === '') {
+            message = 'Password cannot be blank';
+            isValid = false;
+        }
+        else if (this.state.password !== this.state.verifyPassword) {
+            message = 'Passwords are not equal';
+            isValid = false;
+        }
+
+        this.setState({errorMessage: message});
+        return isValid;
+    };
 
     register = () => {
+
+        // Do client side validation first
+        if (!this.validate()) return;
+
         userService.register(this.state.username, this.state.password)
             .then(currentUser => {
                 if (!currentUser) {
@@ -37,6 +63,9 @@ class RegisterComponent extends React.Component {
                 this.state.errorMessage &&
                 <div className="alert alert-danger">
                     <strong>Error!</strong> {this.state.errorMessage}
+                    <button className={"float-right btn"} onClick={() => this.setState({errorMessage: ''})}>
+                        <FontAwesomeIcon icon={faTimes}/>
+                    </button>
                 </div>
 
             }
