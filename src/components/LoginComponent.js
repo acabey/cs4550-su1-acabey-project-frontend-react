@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import userService from "../services/userService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import AlertComponent from "./AlertComponent";
 
 class LoginComponent extends React.Component {
 
@@ -35,13 +36,9 @@ class LoginComponent extends React.Component {
 
             {
                 this.state.errorMessage &&
-                <div className="alert alert-danger">
-                    <strong>Error!</strong> {this.state.errorMessage}
-                    <button className={"float-right btn"} onClick={() => this.setState({errorMessage: ''})}>
-                        <FontAwesomeIcon icon={faTimes}/>
-                    </button>
-                </div>
-
+                <AlertComponent message={<><strong>Error! </strong> {this.state.errorMessage}</>}
+                                alertType={'danger'}
+                                clear={() => this.setState({errorMessage: ''})}/>
             }
 
             <h1>Sign In</h1>
