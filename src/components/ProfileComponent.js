@@ -89,7 +89,8 @@ class ProfileComponent extends React.Component {
                         email: user.email,
                         role: user.role,
                         bio: user.bio,
-                        imageUrl: user.imageUrl
+                        imageUrl: user.imageUrl,
+                        successMessage: 'Successfully updated profile!'
                     })
                 }
             })
