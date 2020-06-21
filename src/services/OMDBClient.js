@@ -1,68 +1,22 @@
-class TVDBClient {
+class OMDBClient {
 
-    url = 'https://api.thetvdb.com';
     credentials = {
-        apikey: 'e5094420c444a38c3b46f926de91dde3',
-        userkey: '5ED01E4096DD78.63651277',
-        username: 'acabey',
+        apikey: 'ff86f785',
     };
-
-    token = '';
-
-    constructor() {
-        this.login();
-    }
+    url = new URL(`http://www.omdbapi.com/?apikey=${this.credentials.apikey}`);
 
     /**
-     * POST - Create
-     *
-     * Returns a session token to be included in the rest of the requests. Note that API key authentication is required
-     * for all subsequent requests and user auth is required for routes in the User section
-     * Sets ephemeral API token for future requests
+     * Allows the user to search for movies by their title
      */
-    login() {
-        return fetch(`${this.url}/login`, {
-            method: 'POST',
-            body: JSON.stringify(this.credentials),
-            headers: {
-                'content-type': 'application/json'
-            }
-        }).then((response) => {
-            return response.json()
-        }).then((tokenResponse) => {
-            this.token = tokenResponse['token']
-        });
-    }
+    searchMoviesByTitle(movieTitle) {
+        let searchUrl = this.url;
+        searchUrl.append('t', movieTitle);
 
-    /**
-     *
-     * @returns {Promise<any>} Array of JSON course objects
-     */
-    findTopSeries() {
-        return [];
-    }
-
-    /**
-     * Allows the user to search for a series based on the following parameters.
-     * @returns {Promise<any>} Array of JSON course objects
-     */
-    searchSeries(series) {
-        return fetch(`${this.url}/series`, {
-            method: 'POST',
-            body: JSON.stringify(
-                {
-                    name: series
-                }
-            ),
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${this.token}`
-            }
-        }).then((response) => {
+        return fetch(searchUrl).then((response) => {
             return response.json()
         })
     }
 
 }
 
-export default TVDBClient
+export default new OMDBClient()

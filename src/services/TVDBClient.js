@@ -6,6 +6,13 @@ class TVDBClient {
         userkey: '5ED01E4096DD78.63651277',
         username: 'acabey',
     };
+    /*
+    {
+      "apikey": "e5094420c444a38c3b46f926de91dde3",
+      "userkey": "5ED01E4096DD78.63651277",
+      "username": "acabey"
+    }
+     */
 
     token = '';
 
