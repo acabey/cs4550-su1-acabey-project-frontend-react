@@ -1,8 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import userService from "../services/userService";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import AlertComponent from "./AlertComponent";
 
 class LoginComponent extends React.Component {
@@ -13,7 +11,27 @@ class LoginComponent extends React.Component {
         errorMessage: ''
     };
 
+    validate = () => {
+        let message;
+        let isValid = true;
+
+        if (this.state.username === '') {
+            message = 'Username cannot be blank';
+            isValid = false;
+        }
+        else if (this.state.password === '') {
+            message = 'Password cannot be blank';
+            isValid = false;
+        }
+
+        this.setState({errorMessage: message});
+        return isValid;
+    };
+
     login = () => {
+
+        if (!this.validate()) return;
+
         userService.login(this.state.username, this.state.password)
             .then(currentUser => {
                 if (!currentUser) {
