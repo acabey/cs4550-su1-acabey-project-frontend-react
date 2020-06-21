@@ -61,22 +61,29 @@ class LoginComponent extends React.Component {
 
             <h1>Sign In</h1>
             <div className="rounded border border-secondary bg-white">
-                <form className="m-4">
+                <div className="m-4">
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label">
                             Username </label>
                         <div className="col-sm-10">
                             <input className="form-control wbdv-field wbdv-username"
                                    id="username"
-                                   placeholder="Alice"/>
+                                   placeholder="Alice"
+                                   onChange={(e) => {
+                                       this.setState({username: e.target.value})}
+                                   }/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label htmlFor="password" className="col-sm-2 col-form-label">
                             Password </label>
                         <div className="col-sm-10">
-                            <input type="password" className="form-control wbdv-field wbdv-password"
-                                   id="password" placeholder="123qwe#$%"/>
+                            <input type="password"
+                                   className="form-control wbdv-field wbdv-password"
+                                   id="password" placeholder="123qwe#$%"
+                                   onChange={(e) => {
+                                       this.setState({password: e.target.value})}
+                                   }/>
                         </div>
                     </div>
                     <div className="form-group row">
@@ -95,7 +102,7 @@ class LoginComponent extends React.Component {
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 
