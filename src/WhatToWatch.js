@@ -1,6 +1,9 @@
 import React from 'react';
 import {BrowserRouter, Route} from "react-router-dom";
-import MediaDisplayContainer from "./container/MediaDisplayContainer";
+import HomeComponent from "./components/HomeComponent";
+import LoginComponent from "./components/LoginComponent";
+import ProfileComponent from "./components/ProfileComponent";
+import RegisterComponent from "./components/RegisterComponent";
 
 function WhatToWatch() {
     return (
@@ -9,7 +12,19 @@ function WhatToWatch() {
                 <Route
                     path='/'
                     exact={true}
-                    component={MediaDisplayContainer}/>
+                    component={HomeComponent}/>
+                <Route
+                    path='/login'
+                    exact={true}
+                    component={LoginComponent}/>
+                <Route
+                    path='/register'
+                    exact={true}
+                    component={RegisterComponent}/>
+                <Route
+                    path='/profile'
+                    exact={true}
+                    component={ProfileComponent}/>
             </BrowserRouter>
         </div>
 );
