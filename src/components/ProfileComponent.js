@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import userService from "../services/userService";
 
 class ProfileComponent extends React.Component {
 
@@ -8,49 +9,37 @@ class ProfileComponent extends React.Component {
         password: ''
     };
 
-    componentDidMount() {
-        fetch("http://localhost:8080/api/profile", {
-            method: 'POST',
-            credentials: "include"
-        })
-            .then(response => {
-                return response.json()
-            })
+    componentDidMount = () => {
+        userService.getProfile()
             .catch(e => {
-                this.props.history.push("/")
+                this.props.history.push("/login")
             })
             .then(user => {
                 if(user)
                     this.setState({
-                        username: user.username, password: user.password
+                        username: user.username,
+                        password: user.password,
+                        email: user.email,
+                        bio: user.bio
                     })
             })
-    }
+    };
 
     update = () => {
-        fetch("http://localhost:8080/api/profile", {
-            headers: {
-                'content-type': 'application/json'
-            },
-            method: 'PUT',
-            credentials: "include"
-        })
+        userService.updateProfile()
             .then(response => response.json())
             .then(user => this.setState({
                 username: user.username, password: user.password
             }))
-    }
+    };
 
     logout = () => {
-        fetch("http://localhost:8080/api/logout", {
-            method: 'POST',
-            credentials: "include"
-        })
+        userService.logout()
             .then(response => this.props.history.push("/"))
 
-    }
+    };
 
-    render = () => (
+    render = () =>
         <div className="container">
             <h1>Profile</h1>
 
@@ -68,7 +57,7 @@ class ProfileComponent extends React.Component {
                         <div className="col-lg-10 col-sm-6">
                             <input id="username"
                                    className="form-control wbdv-field wbdv-username"
-                                   value={this.props.user.username}
+                                   value={this.state.username}
                                    type="text"
                                    placeholder="Username"
                                    title="Use this username to login"
@@ -86,23 +75,8 @@ class ProfileComponent extends React.Component {
                                    className="form-control wbdv-field wbdv-password"
                                    type="password"
                                    placeholder="Enter password"
-                                   value={this.props.user.password}
+                                   value={this.state.password}
                                    title="Password for this account"/>
-                        </div>
-                    </div>
-
-                    <div className="form-group row">
-                        <label className="col-lg-2 col-sm-6 col-form-label"
-                               htmlFor="phone">
-                            Phone
-                        </label>
-                        <div className="col-lg-10 col-sm-6">
-                            <input id="phone"
-                                   className="form-control wbdv-field wbdv-phone"
-                                   type="text"
-                                   placeholder="Phone number"
-                                   value={this.props.user.phone}
-                                   title="Phone number"/>
                         </div>
                     </div>
 
@@ -116,21 +90,8 @@ class ProfileComponent extends React.Component {
                                    className="form-control wbdv-field wbdv-email"
                                    type="text"
                                    placeholder="Email address"
-                                   value={this.props.user.email}
+                                   value={this.state.email}
                                    title="Email for this account"/>
-                        </div>
-                    </div>
-
-                    <div className="form-group row">
-                        <label className="col-lg-2 col-sm-6 col-form-label"
-                               htmlFor="dob">
-                            Date of birth
-                        </label>
-                        <div className="col-lg-10 col-sm-6">
-                            <input className="form-control wbdv-field wbdv-dob"
-                                   id="dob"
-                                   type="date"
-                                   value={this.props.user.dob}/>
                         </div>
                     </div>
 
@@ -141,9 +102,9 @@ class ProfileComponent extends React.Component {
                         </label>
                         <div className="col-lg-10 col-sm-6">
                             <select className="form-control custom-select wbdv-field wbdv-role" id="role">
-                                <option selected={this.props.user.role === "FACULTY"} value="FACULTY">Faculty</option>
-                                <option selected={this.props.user.role === "STUDENT"} value="STUDENT">Student</option>
-                                <option selected={this.props.user.role === "ADMIN"} value="ADMIN">Admin</option>
+                                <option selected={this.state.role === "FACULTY"} value="FACULTY">Faculty</option>
+                                <option selected={this.state.role === "STUDENT"} value="STUDENT">Student</option>
+                                <option selected={this.state.role === "ADMIN"} value="ADMIN">Admin</option>
                             </select>
                         </div>
                     </div>
@@ -168,7 +129,7 @@ class ProfileComponent extends React.Component {
                     </div>
                 </form>
             </div>
-        </div>);
+        </div>
 };
 
 export default ProfileComponent;
