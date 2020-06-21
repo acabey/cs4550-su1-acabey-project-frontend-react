@@ -1,7 +1,5 @@
 import React from "react";
-import {Container} from "react-bootstrap";
-import MediumGridComponent from "../components/MediumGridComponent";
-import NavComponent from "../components/NavComponent";
+import HomeComponent from "../components/HomeComponent";
 
 class WatchlistDisplayContainer extends React.Component {
 
@@ -16,7 +14,7 @@ class WatchlistDisplayContainer extends React.Component {
     };
 
     render = () =>
-        <div className={}/>
+        <HomeComponent searchButtonInputHandler={() => null}/>
 }
 
 export default WatchlistDisplayContainer

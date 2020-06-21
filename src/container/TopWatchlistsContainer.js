@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
-import watchlistReducer from "../reducers/watchlistReducer";
 import WatchlistService from "../services/WatchlistService";
+import watchlistReducer from "../reducers/watchlistReducer";
+import WatchlistListComponent from "../components/WatchlistListComponent";
 
 const stateToPropertyMapper = (state, ownProps) => {
     return {
@@ -57,8 +58,8 @@ const dispatchToPropertyMapper = (dispatch) => {
     }
 };
 
-const WatchlistListContainer = connect
+const TopWatchlistContainer = connect
 (stateToPropertyMapper, dispatchToPropertyMapper)
-(WatchlistList);
+(WatchlistListComponent);
 
-export default WatchlistListContainer
+export default TopWatchlistContainer;
