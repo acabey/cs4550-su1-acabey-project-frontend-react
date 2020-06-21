@@ -6,10 +6,21 @@ import * as serviceWorker from './serviceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import {Provider} from "react-redux";
+import watchlistReducer from "./reducers/watchlistReducer";
+import {combineReducers, createStore} from "redux";
+
+const reducers = combineReducers({
+    watchlistReducer
+});
+
+const store = createStore(reducers);
 
 ReactDOM.render(
   <React.StrictMode>
-    <WhatToWatch />
+      <Provider store={store}>
+          <WhatToWatch />
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
