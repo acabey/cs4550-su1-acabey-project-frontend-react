@@ -13,23 +13,38 @@ class LoginComponent extends React.Component {
     login = () => {
         userService.login(this.state.username, this.state.password)
             .catch(e => {
-                //this.props.history.push(`/login?error=${e.toString()}`)
-                console.log(e);
+                this.props.history.push({
+                    pathname: '/login',
+                    search: `error=${encodeURI(e.toString())}`,
+                });
+                console.log(`Error on login: ${e}`);
             })
             .then(currentUser => {
-                //if(currentUser)
-                //    this.props.history.push("/profile")
+                if(currentUser) {
+                    this.props.history.push("/profile")
+                    console.log(`currentuser = ${currentUser}`);
+                }
 
-                console.log(currentUser);
             })
     };
 
-    componentDidMount() {
+    componentDidMount= () => {
         let urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('error')) {
             this.setState({errorMessage: urlParams.get('error')});
+            console.log(`Found error: ${urlParams.get('error')}`)
         }
-    }
+    };
+
+
+    componentDidUpdate = (prevProps, prevState, snapshot) => {
+        if (prevProps.history !== this.props.history) {
+            let urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error')) {
+                this.setState({errorMessage: urlParams.get('error')});
+            }
+        }
+    };
 
     render = () =>
         <div className="container">
@@ -69,7 +84,7 @@ class LoginComponent extends React.Component {
                             </button>
                             <div className="row">
                                 <div className="col-6">
-                                    <a href="#" className="wbdv-link wbdv-forgot-password">Forgot Password?</a>
+                                    {/*<a href="#" className="wbdv-link wbdv-forgot-password">Forgot Password?</a>*/}
                                 </div>
                                 <div className="col-6">
                                     <Link className="float-right wbdv-link wbdv-register"

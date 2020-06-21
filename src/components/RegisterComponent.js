@@ -6,77 +6,101 @@ class RegisterComponent extends React.Component {
 
     state = {
         username: '',
-        password: ''
-    }
+        password: '',
+        verifyPassword: ''
+    };
 
 
     register = () => {
         userService.register(this.state.username, this.state.password)
             .then(currentUser => {
-                if(currentUser)
+                if(currentUser) {
+                    console.log(`Successful register: ${currentUser}`);
                     this.props.history.push("/profile")
+                }
+                else {
+                    console.log(`Non-successful register: ${currentUser}`);
+                }
+            })
+            .catch((e) => {
+                console.log(`Error registering ${e.toString()}`)
             })
     };
 
     render = () =>
-        <div class="container">
+        <div className={"container"}>
             <h1>Register</h1>
 
-            <div class="rounded border border-secondary bg-white">
-                <form class="m-4">
+            <div className={"rounded border border-secondary bg-white"}>
+                <form className={"m-4"}>
 
-                    <div class="form-group row">
+                    <div className={"form-group row"}>
                         <label for="username"
-                               class="col-sm-2 col-form-label">
+                               className={"col-sm-2 col-form-label"}>
                             Username</label>
-                        <div class="col-sm-10">
+                        <div className={"col-sm-10"}>
                             <input  id="username"
-                                    class="form-control wbdv-field wbdv-username"
+                                    className={"form-control wbdv-field wbdv-username"}
                                     type="text"
                                     placeholder="joe123"
-                                    title="Use this username to login"/>
+                                    title="Use this username to login"
+                                    onChange={
+                                        (e) => {
+                                            this.setState({username: e.target.value})}
+                                    }/>
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div className={"form-group row"}>
                         <label for="password"
-                               class="col-sm-2 col-form-label">
+                               className={"col-sm-2 col-form-label"}>
                             Password
                         </label>
-                        <div class="col-sm-10">
+                        <div className={"col-sm-10"}>
                             <input  id="password"
-                                    class="form-control wbdv-field wbdv-password"
-                                    type="password"/>
+                                    className={"form-control wbdv-field wbdv-password"}
+                                    type="password"
+                                    onChange={
+                                        (e) => {
+                                            this.setState({password: e.target.value})}
+                                    }/>
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div className={"form-group row"}>
                         <label for="verify-password"
-                               class="col-sm-2 col-form-label">
+                               className={"col-sm-2 col-form-label"}>
                             Verify Password
                         </label>
-                        <div class="col-sm-10">
+                        <div className={"col-sm-10"}>
                             <input  id="verify-password"
-                                    class="form-control wbdv-field wbdv-password-verify"
-                                    type="password"/>
+                                    className={"form-control wbdv-field wbdv-password-verify"}
+                                    type="password"
+                                    onChange={
+                                        (e) => {
+                                            this.setState({verifyPassword: e.target.value})}
+                                    }/>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <div class="form-group row">
-                                <Link class="btn btn-primary btn-primary btn-block wbdv-button wbdv-register"
-                                      to="/profile">Register</Link>
+                    <div className={"form-group row"}>
+                        <label className={"col-sm-2 col-form-label"}></label>
+                        <div className={"col-sm-10"}>
+                            <div className={"form-group row"}>
+                                <button
+                                    className={"btn btn-primary btn-primary btn-block wbdv-button wbdv-register"}
+                                    onClick={this.register}>
+                                    Register
+                                </button>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <Link class="wbdv-link wbdv-login"
+                            <div className={"row"}>
+                                <div className={"col-6"}>
+                                    <Link className={"wbdv-link wbdv-login"}
                                           to="/login">Have an account already? Login</Link>
                                 </div>
-                                <div class="col-6">
-                                    <Link class="float-right wbdv-link wbdv-cancel"
-                                          to="/table/courses">Cancel</Link>
+                                <div className={"col-6"}>
+                                    <Link className={"float-right wbdv-link wbdv-cancel"}
+                                          to="/">Cancel</Link>
                                 </div>
                             </div>
                         </div>

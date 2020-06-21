@@ -11,12 +11,10 @@ const watchlistReducer = (state=initialState, event) => {
                     event.newWatchlist
                 ]
             };
-            break
         case "DELETE_WATCHLIST":
             return {
                 watchlists: state.watchlists.filter(watchlist => watchlist.id !== event.watchlistId)
             };
-            break
         case "UPDATE_WATCHLIST":
             return {
                 ...state,
@@ -29,7 +27,6 @@ const watchlistReducer = (state=initialState, event) => {
                 ...state,
                 watchlists: event.watchlists
             };
-            break
         default:
             return state
     }
