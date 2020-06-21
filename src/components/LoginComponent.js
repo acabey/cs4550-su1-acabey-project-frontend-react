@@ -12,38 +12,20 @@ class LoginComponent extends React.Component {
 
     login = () => {
         userService.login(this.state.username, this.state.password)
-            .catch(e => {
-                this.props.history.push({
-                    pathname: '/login',
-                    search: `error=${encodeURI(e.toString())}`,
-                });
-                console.log(`Error on login: ${e}`);
-            })
             .then(currentUser => {
-                if(currentUser) {
-                    this.props.history.push("/profile")
-                    console.log(`currentuser = ${currentUser}`);
+                if (!currentUser) {
+                    console.error("Invalid response body for login")
                 }
-
+                else if (currentUser.error) {
+                    this.setState({errorMessage: currentUser.message});
+                }
+                else {
+                    this.props.history.push("/profile")
+                }
             })
-    };
-
-    componentDidMount= () => {
-        let urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('error')) {
-            this.setState({errorMessage: urlParams.get('error')});
-            console.log(`Found error: ${urlParams.get('error')}`)
-        }
-    };
-
-
-    componentDidUpdate = (prevProps, prevState, snapshot) => {
-        if (prevProps.history !== this.props.history) {
-            let urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('error')) {
-                this.setState({errorMessage: urlParams.get('error')});
-            }
-        }
+            .catch(e => {
+                console.error(`Error on login: ${e}`);
+            })
     };
 
     render = () =>
@@ -52,7 +34,7 @@ class LoginComponent extends React.Component {
             {
                 this.state.errorMessage &&
                 <div className="alert alert-danger">
-                    <strong>Warning!</strong> {this.state.errorMessage}
+                    <strong>Error!</strong> {this.state.errorMessage}
                 </div>
 
             }
