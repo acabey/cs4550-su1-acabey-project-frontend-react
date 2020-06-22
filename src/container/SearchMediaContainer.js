@@ -13,20 +13,20 @@ const stateToPropertyMapper = (state, ownProps) => {
 
 const dispatchToPropertyMapper = (dispatch) => {
     return {
-        findMediaForUser: (topicId) =>  {
-            MediumService.findMediaForUser(topicId)
+        findMediaForUser: (username) =>  {
+            MediumService.findMediaForUser(username)
                 .then(mediaForUser => dispatch({
-                    type: 'FIND_MEDIA_FOR_USER',
+                    type: 'FIND_MEDIA',
                     media: mediaForUser
-                })).catch(error => dispatch({
-                type: 'FIND_MEDIA_FOR_USER',
-                media: []
-            }))
+                }))
+                .catch(error => {
+                    console.error('Could not find media for user')
+                })
         },
         findAllMedia: () => {
             MediumService.findAllMedia()
                 .then(actualMedia => dispatch({
-                    type: 'FIND_ALL_MEDIA',
+                    type: 'FIND_MEDIA',
                     media: actualMedia
                 }))
         },
@@ -41,8 +41,8 @@ const dispatchToPropertyMapper = (dispatch) => {
                         })
                 })
         },
-        createMedium: (topicId, newMedium) => {
-            MediumService.createMedium(topicId, newMedium)
+        createMedium: (username, newMedium) => {
+            MediumService.createMedium(username, newMedium)
                 .then(actualNewMedium => dispatch({
                     type: "CREATE_MEDIUM",
                     newMedium: actualNewMedium
@@ -57,9 +57,9 @@ const dispatchToPropertyMapper = (dispatch) => {
         },
         searchMedia: (title) => {
             MediumService.searchMediaByTitle(title)
-                .then(status => dispatch({
-                    type: "SEARCH_MEDIA",
-                    title: title
+                .then(actualMedia => dispatch({
+                    type: "MEDIA_MEDIA",
+                    media: actualMedia
                 }))
         }
     }
