@@ -1,4 +1,6 @@
 //const url = 'https://acabey-server-java.herokuapp.com/api';
+import dummyMedia from "../utils/DummyMediaData";
+
 const url = 'http://localhost:8080/api';
 
 export const createMedium = (userId, medium) =>
@@ -37,11 +39,15 @@ export const updateMedium = (mediumId, medium) =>
     })
         .then(response => response.json());
 
-export const deleteMedium= (mediumId) =>
+export const deleteMedium = (mediumId) =>
     fetch(`${url}/media/${mediumId}`, {
         method: 'DELETE'
     })
         .then(response => response.json());
+
+export const searchMediaByTitle = (title) => {
+    return JSON.stringify(dummyMedia)
+};
 
 
 export default {
@@ -50,5 +56,6 @@ export default {
     findMediumById,
     findAllMedia,
     updateMedium,
-    deleteMedium
+    deleteMedium,
+    searchMediaByTitle
 }

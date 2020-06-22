@@ -54,6 +54,13 @@ const dispatchToPropertyMapper = (dispatch) => {
                     type: "DELETE_MEDIUM",
                     mediumId: mediumId
                 }))
+        },
+        searchMedia: (title) => {
+            MediumService.searchMediaByTitle(title)
+                .then(status => dispatch({
+                    type: "SEARCH_MEDIA",
+                    title: title
+                }))
         }
     }
 };
