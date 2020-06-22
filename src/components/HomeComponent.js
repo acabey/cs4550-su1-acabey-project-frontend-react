@@ -13,12 +13,9 @@ class HomeComponent extends React.Component {
             <NavComponent history={this.props.history}/>
 
             {
-                this.props.match.params.title &&
+                this.props.match.params.title ?
                 <SearchMediaContainer history={this.props.history}/>
-            }
-
-            {
-                !this.props.match.params.title &&
+                :
                 <>
                     <span className={`text-secondary`}>Top Public Watchlists</span>
                     <TopWatchlistContainer/>

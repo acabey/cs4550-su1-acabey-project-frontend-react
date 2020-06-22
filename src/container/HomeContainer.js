@@ -14,7 +14,7 @@ class WatchlistDisplayContainer extends React.Component {
     };
 
     render = () =>
-        <HomeComponent searchButtonInputHandler={() => null}/>
+        <HomeComponent/>
 }
 
 export default WatchlistDisplayContainer
