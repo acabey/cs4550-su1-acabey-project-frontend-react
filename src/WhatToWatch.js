@@ -4,6 +4,7 @@ import HomeComponent from "./components/HomeComponent";
 import LoginComponent from "./components/LoginComponent";
 import ProfileComponent from "./components/ProfileComponent";
 import RegisterComponent from "./components/RegisterComponent";
+import SearchMediaContainer from "./container/SearchMediaContainer";
 
 function WhatToWatch() {
     return (
@@ -11,6 +12,14 @@ function WhatToWatch() {
             <BrowserRouter>
                 <Route
                     path='/'
+                    exact={true}
+                    component={HomeComponent}/>
+                <Route
+                    path='/search'
+                    exact={true}
+                    component={HomeComponent}/>
+                <Route
+                    path='/search/:title'
                     exact={true}
                     component={HomeComponent}/>
                 <Route
