@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #BAB2B5!important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 
 input, select, textarea{
@@ -26,7 +30,7 @@ input, select, textarea{
 }
 
 .bg-mute-primary {
-  background-color: #BAB285;
+  background-color: #BAB2B5;
 }
 
 .bg-mute-secondary {
@@ -37,11 +41,87 @@ input, select, textarea{
   background-color: #AC3B61;
 }
 
-.text-primary {
-  -webkit-text-fill-color: #123C69;
+.text-mute-light {
+  text-color: #EEE2DC;
 }
 
-.color-primary {
+.text-mute-dark {
+  text-color: #123C69;
+}
+
+.text-mute-primary {
+  text-color: #BAB2B5;
+}
+
+.text-mute-secondary {
+  text-color: #EDC7B7;
+}
+
+.text-mute-tertiary {
+  text-color: #AC3B61;
+}
+
+.color-white {
+  color: #ffffff;
+}
+
+.color-mute-light {
+  color: #EEE2DC;
+}
+
+.color-mute-dark {
   color: #123C69;
 }
 
+.color-mute-primary {
+  color: #BAB2B5;
+}
+
+.color-mute-secondary {
+  color: #EDC7B7;
+}
+
+.color-mute-tertiary {
+  color: #AC3B61;
+}
+
+.border-color-mute-light {
+  border-color: #EEE2DC;
+}
+
+.border-color-mute-dark {
+  border-color: #123C69;
+}
+
+.border-color-mute-primary {
+  border-color: #BAB2B5 !important;
+}
+
+.border-color-mute-secondary {
+  border-color: #EDC7B7;
+}
+
+.border-color-mute-tertiary {
+  border-color: #AC3B61;
+}
+
+.vh-50 {
+  height: 50vh !important;
+}
+
+.vh-20 {
+  height: 20vh !important;
+}
+
+
+.vh-5 {
+  height: 5vh !important;
+}
+
+.card-border {
+  border: medium transparent;
+}
+
+.card-border:hover {
+  border: medium #AC3B61;
+}

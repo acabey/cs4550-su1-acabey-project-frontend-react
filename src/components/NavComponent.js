@@ -13,6 +13,11 @@ class NavComponent extends React.Component {
     };
 
     componentDidMount = () => {
+
+        if (this.props.match.params.title) {
+            this.setState({searchTerm: decodeURI(this.props.match.params.title)})
+        }
+
         userService.getProfile()
             .catch(e => {
                 // Error in the request
@@ -32,6 +37,12 @@ class NavComponent extends React.Component {
             })
     };
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.match.params.title !== prevProps.match.params.title) {
+            this.setState({searchTerm: decodeURI(this.props.match.params.title)})
+        }
+    }
+
     handleKeys = (e) => {
         if (e.key === "Enter") {
             this.search()
@@ -41,7 +52,7 @@ class NavComponent extends React.Component {
 
     search = () => {
         if (this.state.searchTerm) {
-            this.props.history.push(`/search/${this.state.searchTerm}`)
+            this.props.history.push(`/search/${encodeURI(this.state.searchTerm)}`)
         }
     };
 
@@ -55,7 +66,9 @@ class NavComponent extends React.Component {
                             <span className="wbdv-field wbdv-hamburger mr-2">
                                 <FontAwesomeIcon className={`color-primary`} icon={faTv} size={'1x'}/>
                             </span>
-                            <span className="wbdv-label wbdv-course-manager d-none d-md-inline text-primary">What to Watch</span>
+                            <strong className="wbdv-label wbdv-course-manager d-none d-md-inline text-mute-primary">
+                                What to Watch
+                            </strong>
                         </Link>
                     </li>
                 </ul>

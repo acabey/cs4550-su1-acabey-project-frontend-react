@@ -13,14 +13,16 @@ import MediumGridHeadComponent from "./MediumGridHeadComponent";
 class MediumGridComponent extends MediumListComponent {
 
     render = () =>
-        <div>
+        <div className={""}>
             <div className="ml-2 mr-2">
                 <div className="row">
                     {
                         this.sortMedia(this.props.media).map(medium =>
-                            <MediumCardComponent
-                                medium={medium}
-                                key={medium.id}/>
+                            <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2">
+                                <MediumCardComponent
+                                    medium={medium}
+                                    key={medium.id}/>
+                            </div>
                         )
                     }
                 </div>

@@ -10,7 +10,7 @@ class HomeComponent extends React.Component {
     render = () =>
         <Container fluid={true}>
 
-            <NavComponent history={this.props.history}/>
+            <NavComponent history={this.props.history} match={this.props.match}/>
 
             {
                 this.props.match.params.title ?
