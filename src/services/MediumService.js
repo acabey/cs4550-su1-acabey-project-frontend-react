@@ -53,9 +53,12 @@ class MediumService {
         })
             .then(response => response.json());
 
-    searchMediaByTitle = (title) => {
-        return JSON.stringify(dummyMedia)
-    };
+    searchMediaByTitle = (title) =>
+        new Promise((resolve, reject) => {
+            resolve(JSON.stringify(dummyMedia));
+        })
+            .then(media => JSON.parse(media));
+            //.then(response => response.json());
 }
 
 

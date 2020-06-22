@@ -6,6 +6,7 @@ const mediumReducer = (state=initialState, event) => {
     switch (event.type) {
         case "CREATE_MEDIUM":
             return {
+                ...state,
                 media: [
                     ...state.media,
                     event.newMedium
@@ -14,6 +15,7 @@ const mediumReducer = (state=initialState, event) => {
             break
         case "DELETE_MEDIUM":
             return {
+                ...state,
                 media: state.media.filter(medium => medium.id !== event.mediumId)
             };
             break

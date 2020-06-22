@@ -7,7 +7,8 @@ const stateToPropertyMapper = (state, ownProps) => {
     return {
         media: state.mediumReducer.media,
         selectedMedia: state.mediumReducer.selectedMedia,
-        params: ownProps.params,
+        params: {match: {title: 'Example'}}
+        //params: ownProps.params,
     }
 };
 
@@ -58,7 +59,7 @@ const dispatchToPropertyMapper = (dispatch) => {
         searchMedia: (title) => {
             MediumService.searchMediaByTitle(title)
                 .then(actualMedia => dispatch({
-                    type: "MEDIA_MEDIA",
+                    type: "FIND_MEDIA",
                     media: actualMedia
                 }))
         }

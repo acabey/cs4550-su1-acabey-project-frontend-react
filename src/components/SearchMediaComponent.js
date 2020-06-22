@@ -21,7 +21,7 @@ class SearchMediaComponent extends React.Component {
 
     render = () =>
         <MediumGridComponent
-            media={this.state.media}/>
+            media={this.props.media}/>
 }
 
 export default SearchMediaComponent
