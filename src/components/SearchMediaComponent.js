@@ -1,7 +1,7 @@
 import React from "react";
-import MediumGridComponent from "../components/MediumGridComponent";
+import MediumGridComponent from "./MediumGridComponent";
 
-class MediaDisplayContainer extends React.Component {
+class SearchMediaComponent extends React.Component {
 
     state = {
         media: [
@@ -246,4 +246,4 @@ class MediaDisplayContainer extends React.Component {
             media={this.state.media}/>
 }
 
-export default MediaDisplayContainer
+export default SearchMediaComponent
