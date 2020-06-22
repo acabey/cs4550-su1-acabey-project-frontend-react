@@ -1,54 +1,54 @@
 //const url = 'https://acabey-server-java.herokuapp.com/api';
 const url = 'http://localhost:8080/api';
 
-export const createWatchlist = (userId, watchlist) =>
-    fetch(`${url}/users/${userId}/watchlists`, {
+export const createMedium = (userId, medium) =>
+    fetch(`${url}/users/${userId}/media`, {
         method: 'POST',
-        body: JSON.stringify(watchlist),
+        body: JSON.stringify(medium),
         headers: {
             'content-type': 'application/json'
         }
     })
         .then(response => response.json());
 
-export const findWatchlistsForUser = (userId) =>
-    fetch(`${url}/users/${userId}/watchlists`)
+export const findMediaForUser = (userId) =>
+    fetch(`${url}/users/${userId}/media`)
         .then(response => response.json());
 
-export const findWatchlistById = (watchlistId) =>
-    fetch(`${url}/watchlists/${watchlistId}`, {
+export const findMediumById = (mediumId) =>
+    fetch(`${url}/media/${mediumId}`, {
         method: 'GET'
     })
         .then(response => response.json());
 
-export const findAllWatchlists = (watchlistId) =>
-    fetch(`${url}/watchlists`, {
+export const findAllMedia = (mediumId) =>
+    fetch(`${url}/media`, {
         method: 'GET'
     })
         .then(response => response.json());
 
-export const updateWatchlist = (watchlistId, watchlist) =>
-    fetch(`${url}/watchlists/${watchlistId}`, {
+export const updateMedium = (mediumId, medium) =>
+    fetch(`${url}/media/${mediumId}`, {
         method: 'PUT',
-        body: JSON.stringify(watchlist),
+        body: JSON.stringify(medium),
         headers: {
             'content-type': 'application/json'
         }
     })
         .then(response => response.json());
 
-export const deleteWatchlist= (watchlistId) =>
-    fetch(`${url}/watchlists/${watchlistId}`, {
+export const deleteMedium= (mediumId) =>
+    fetch(`${url}/media/${mediumId}`, {
         method: 'DELETE'
     })
         .then(response => response.json());
 
 
 export default {
-    createWatchlist,
-    findWatchlistsForUser,
-    findWatchlistById,
-    findAllWatchlists,
-    updateWatchlist,
-    deleteWatchlist
+    createMedium,
+    findMediaForUser,
+    findMediumById,
+    findAllMedia,
+    updateMedium,
+    deleteMedium
 }
