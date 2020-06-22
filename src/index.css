@@ -13,35 +13,35 @@ code {
 }
 
 input, select, textarea{
-  color: #2E1114;
-  -webkit-text-fill-color: #2E1114;
+  color: #123C69;
+  -webkit-text-fill-color: #123C69;
 }
 
 .bg-mute-light {
-  background-color: #ADADAD;
+  background-color: #EEE2DC;
 }
 
 .bg-mute-dark {
-  background-color: #2E1114;
+  background-color: #123C69;
 }
 
 .bg-mute-primary {
-  background-color: #501B1D;
+  background-color: #BAB285;
 }
 
 .bg-mute-secondary {
-  background-color: #64485C;
+  background-color: #EDC7B7;
 }
 
 .bg-mute-tertiary {
-  background-color: #83677B;
+  background-color: #AC3B61;
 }
 
 .text-primary {
-  -webkit-text-fill-color: azure;
+  -webkit-text-fill-color: #123C69;
 }
 
 .color-primary {
-  color: azure;
+  color: #123C69;
 }
 

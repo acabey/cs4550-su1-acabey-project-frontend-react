@@ -46,27 +46,17 @@ class NavComponent extends React.Component {
     };
 
     render = () =>
-        <nav className="navbar navbar-expand navbar-light justify-content-between fixed-top wbdv-navbar bg-mute-dark">
+        <nav className="navbar navbar-expand navbar-light justify-content-between fixed-top wbdv-navbar bg-mute-secondary">
             <div className="collapse navbar-collapse">
                 <ul className="navbar-nav">
                     <li className="nav-item dropdown">
-                        <button className="btn navbar-brand nav-link"
-                                id="managerDropdown"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
+                        <Link className="btn navbar-brand nav-link"
+                                to={"/"}>
                             <span className="wbdv-field wbdv-hamburger mr-2">
                                 <FontAwesomeIcon className={`color-primary`} icon={faTv} size={'1x'}/>
                             </span>
                             <span className="wbdv-label wbdv-course-manager d-none d-md-inline text-primary">What to Watch</span>
-                        </button>
-                        {
-                            //<div className="dropdown-menu">
-                            //    <Link to="/" className="dropdown-item active">Example</Link>
-                            //    <Link to="/" className="dropdown-item">Example</Link>
-                            //</div>
-                        }
+                        </Link>
                     </li>
                 </ul>
 
