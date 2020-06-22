@@ -5,18 +5,18 @@ class SearchMediaComponent extends React.Component {
 
     constructor(props) {
         super(props);
-
-        //this.tvdbClient = new TVDBClient();
-        const TVDB = require('node-tvdb');
-        this.tvdb = new TVDB('e5094420c444a38c3b46f926de91dde3');
-
     }
 
     componentDidMount = () => {
-        this.props.searchMedia('Star Wars')
+        if (this.props.params.match.title) {
+            this.props.searchMedia(this.props.params.match.title)
+        }
     };
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
+        if (this.props.params.match.title !== prevProps.params.match.title) {
+            this.props.searchMedia(this.props.params.match.title)
+        }
     };
 
     render = () =>
