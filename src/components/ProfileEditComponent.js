@@ -2,7 +2,7 @@ import React from "react";
 import userService from "../services/userService";
 import AlertComponent from "./AlertComponent";
 
-class ProfileComponent extends React.Component {
+class ProfileEditComponent extends React.Component {
 
     state = {
         username: '',
@@ -278,4 +278,4 @@ class ProfileComponent extends React.Component {
         </div>
 };
 
-export default ProfileComponent;
+export default ProfileEditComponent;

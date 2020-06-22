@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route} from "react-router-dom";
 import HomeComponent from "./components/HomeComponent";
 import LoginComponent from "./components/LoginComponent";
-import ProfileComponent from "./components/ProfileComponent";
+import ProfileEditComponent from "./components/ProfileEditComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import SearchMediaContainer from "./container/SearchMediaContainer";
 
@@ -33,7 +33,7 @@ function WhatToWatch() {
                 <Route
                     path='/profile'
                     exact={true}
-                    component={ProfileComponent}/>
+                    component={ProfileEditComponent}/>
             </BrowserRouter>
         </div>
 );

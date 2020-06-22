@@ -2,11 +2,34 @@ import React from "react";
 import {faList, faSearch, faTv, faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
+import userService from "../services/userService";
 
 class NavComponent extends React.Component {
 
     state = {
-        searchTerm: ''
+        user: null,
+        searchTerm: '',
+        errorMessage: '',
+    };
+
+    componentDidMount = () => {
+        userService.getProfile()
+            .catch(e => {
+                // Error in the request
+            })
+            .then(user => {
+                if(!user) {
+                    // Not logged in
+                }
+                else if (user.error) {
+                    this.setState({errorMessage: user.message})
+                }
+                else {
+                    this.setState({
+                        user: user,
+                    })
+                }
+            })
     };
 
     handleKeys = (e) => {
@@ -28,11 +51,11 @@ class NavComponent extends React.Component {
                 <ul className="navbar-nav">
                     <li className="nav-item dropdown">
                         <button className="btn navbar-brand nav-link"
-                           id="managerDropdown"
-                           role="button"
-                           data-toggle="dropdown"
-                           aria-haspopup="true"
-                           aria-expanded="false">
+                                id="managerDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
                             <span className="wbdv-field wbdv-hamburger mr-2">
                                 <FontAwesomeIcon className={`color-primary`} icon={faTv} size={'1x'}/>
                             </span>
@@ -71,10 +94,18 @@ class NavComponent extends React.Component {
                             aria-expanded="false">
                         <FontAwesomeIcon className={`color-primary`} icon={faUserCircle} size={'2x'}/>
                     </button>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <Link className="dropdown-item" to="/profile">Profile</Link>
-                        <Link className="dropdown-item" to="/login">Login</Link>
-                    </div>
+                    {
+                        this.state.user ?
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link className="dropdown-item" to="/profile">Profile</Link>
+                                <Link className="dropdown-item" to="/logout">Logout</Link>
+                            </div>
+                            :
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link className="dropdown-item" to="/login">Login</Link>
+                                <Link className="dropdown-item" to="/register">Register</Link>
+                            </div>
+                    }
                 </div>
             </div>
         </nav>
