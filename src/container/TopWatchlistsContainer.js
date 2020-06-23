@@ -13,8 +13,8 @@ const stateToPropertyMapper = (state, ownProps) => {
 
 const dispatchToPropertyMapper = (dispatch) => {
     return {
-        findWatchlistsForUser: (topicId) =>  {
-            WatchlistService.findWatchlistsForUser(topicId)
+        findWatchlistsForUser: (userId) =>  {
+            WatchlistService.findWatchlistsForUser(userId)
                 .then(watchlistsForUser => dispatch({
                     type: 'FIND_WATCHLISTS_FOR_USER',
                     watchlists: watchlistsForUser
@@ -41,8 +41,8 @@ const dispatchToPropertyMapper = (dispatch) => {
                         })
                 })
         },
-        createWatchlist: (topicId, newWatchlist) => {
-            WatchlistService.createWatchlist(topicId, newWatchlist)
+        createWatchlist: (userId, newWatchlist) => {
+            WatchlistService.createWatchlist(userId, newWatchlist)
                 .then(actualNewWatchlist => dispatch({
                     type: "CREATE_WATCHLIST",
                     newWatchlist: actualNewWatchlist

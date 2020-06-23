@@ -1,37 +1,38 @@
 import {connect} from "react-redux";
-import MediumService from "../services/MediumService";
-import mediumReducer from "../reducers/mediumReducer";
-import NavComponent from "../components/NavComponent";
+import WatchlistService from "../services/WatchlistService";
+import WatchlistBarComponent from "../components/WatchlistBarComponent";
 
 const stateToPropertyMapper = (state, ownProps) => {
     return {
-        media: state.mediumReducer.media,
+        watchlists: state.watchlistReducer.watchlists,
+        selectedWatchlists: state.watchlistReducer.selectedWatchlists,
         match: ownProps.match
     }
 };
 
 const dispatchToPropertyMapper = (dispatch) => {
     return {
-        searchMedia: (title) => {
-            MediumService.searchMediaByTitle(title)
-                .then(actualMedia => {
-                    !actualMedia.error ?
-                        dispatch({
-                            type: "FIND_MEDIA",
-                            media: actualMedia
-                        })
-                        :
-                        dispatch({
-                            type: "FIND_MEDIA_ERROR",
-                            error: actualMedia
-                        })
-                })
+        findWatchlistsForUser: (userId) =>  {
+            WatchlistService.findWatchlistsForUser(userId)
+                .then(watchlistsForUser => dispatch({
+                    type: 'FIND_WATCHLISTS_FOR_USER',
+                    watchlists: watchlistsForUser
+                })).catch(error => dispatch({
+                type: 'FIND_WATCHLISTS_FOR_USER',
+                watchlists: []
+            }))
+        },
+        selectWatchlists: (selectedIds) => {
+            dispatch({
+                type: "SELECT_WATCHLISTS",
+                media: selectedIds
+            })
         }
     }
 };
 
 const NavContainer = connect
 (stateToPropertyMapper, dispatchToPropertyMapper)
-(NavComponent);
+(WatchlistBarComponent);
 
 export default NavContainer;

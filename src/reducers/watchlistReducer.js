@@ -1,5 +1,6 @@
 const initialState = {
     watchlists: [],
+    selectedWatchlists: []
 };
 
 const watchlistReducer = (state=initialState, event) => {
@@ -26,6 +27,11 @@ const watchlistReducer = (state=initialState, event) => {
             return {
                 ...state,
                 watchlists: event.watchlists
+            };
+        case "SELECT_WATCHLISTS":
+            return {
+                ...state,
+                selectedWatchlists: event.selectedWatchlists
             };
         default:
             return state

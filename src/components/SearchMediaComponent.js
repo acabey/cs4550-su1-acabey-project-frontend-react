@@ -2,6 +2,7 @@ import React from "react";
 import MediumGridComponent from "./MediumGridComponent";
 import userService from "../services/userService";
 import AlertComponent from "./AlertComponent";
+import WatchlistBarContainer from "../container/WatchlistBarContainer";
 
 class SearchMediaComponent extends React.Component {
 
@@ -14,8 +15,11 @@ class SearchMediaComponent extends React.Component {
             <AlertComponent alertType={'danger'}
                             message={this.props.error.message}/>
             :
+            <>
+            <WatchlistBarContainer/>
             <MediumGridComponent
                 media={this.props.media}/>
+            </>
 }
 
 export default SearchMediaComponent
