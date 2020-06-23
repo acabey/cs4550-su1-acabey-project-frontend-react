@@ -55,6 +55,12 @@ class RegisterComponent extends React.Component {
             })
     };
 
+    handleKeys = (e) => {
+        if (e.key === "Enter") {
+            this.register();
+        }
+    };
+
     render = () =>
         <div className={"container"}>
 
@@ -78,12 +84,13 @@ class RegisterComponent extends React.Component {
                             <input  id="username"
                                     className={"form-control wbdv-field wbdv-username"}
                                     type="text"
-                                    placeholder="joe123"
+                                    placeholder="Username"
                                     title="Use this username to login"
                                     onChange={
                                         (e) => {
                                             this.setState({username: e.target.value})}
-                                    }/>
+                                    }
+                                    onKeyPress={this.handleKeys}/>
                         </div>
                     </div>
 
@@ -99,7 +106,8 @@ class RegisterComponent extends React.Component {
                                     onChange={
                                         (e) => {
                                             this.setState({password: e.target.value})}
-                                    }/>
+                                    }
+                                    onKeyPress={this.handleKeys}/>
                         </div>
                     </div>
 
@@ -115,7 +123,8 @@ class RegisterComponent extends React.Component {
                                     onChange={
                                         (e) => {
                                             this.setState({verifyPassword: e.target.value})}
-                                    }/>
+                                    }
+                                    onKeyPress={this.handleKeys}/>
                         </div>
                     </div>
 
