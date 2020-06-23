@@ -12,16 +12,18 @@ class MediumListComponent extends React.Component {
         }))
     };
 
-    sortMedia = (media) => {
-        if (media.length == 0) {
-            return media;
-        }
-        if (this.state.sortDescription === 'AZ_ASC') {
-            return this.sortAZasc(media);
-        } else {
-            return this.sortAZdesc(media);
-        }
-    };
+    sortMedia = (media) => media;
+
+    //sortMedia = (media) => {
+    //    if (media.length == 0) {
+    //        return media;
+    //    }
+    //    if (this.state.sortDescription === 'AZ_ASC') {
+    //        return this.sortAZasc(media);
+    //    } else {
+    //        return this.sortAZdesc(media);
+    //    }
+    //};
 
     sortAZdesc = (media) => {
         return media.sort((a, b) => {
