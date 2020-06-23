@@ -16,17 +16,17 @@ const dispatchToPropertyMapper = (dispatch) => {
         findWatchlistsForUser: (userId) =>  {
             WatchlistService.findWatchlistsForUser(userId)
                 .then(watchlistsForUser => dispatch({
-                    type: 'FIND_WATCHLISTS_FOR_USER',
+                    type: 'FIND_WATCHLISTS',
                     watchlists: watchlistsForUser
                 })).catch(error => dispatch({
-                type: 'FIND_WATCHLISTS_FOR_USER',
+                type: 'FIND_WATCHLISTS',
                 watchlists: []
             }))
         },
         findAllWatchlists: () => {
             WatchlistService.findAllWatchlists()
                 .then(actualWatchlists => dispatch({
-                    type: 'FIND_ALL_WATCHLISTS',
+                    type: 'FIND_WATCHLISTS',
                     watchlists: actualWatchlists
                 }))
         },
@@ -37,6 +37,7 @@ const dispatchToPropertyMapper = (dispatch) => {
                     if (didUpdate)
                         dispatch({
                             type: 'UPDATE_WATCHLIST',
+                            watchlistId: watchlistId,
                             updatedWatchlist: newWatchlistData
                         })
                 })

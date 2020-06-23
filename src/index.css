@@ -125,3 +125,10 @@ input, select, textarea{
 .card-border:hover {
   border: medium #AC3B61;
 }
+
+.caret-off::before {
+  display: none;
+}
+.caret-off::after {
+  display: none;
+}
