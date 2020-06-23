@@ -44,7 +44,9 @@ const dispatchToPropertyMapper = (dispatch) => {
                 })
         },
         logout: () => {
-
+            dispatch({
+                type: "SIGN_OUT",
+            });
         },
         setError: (message) => {
             dispatch({

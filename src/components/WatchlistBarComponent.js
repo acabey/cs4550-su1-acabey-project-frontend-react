@@ -9,7 +9,7 @@ class WatchlistBarComponent extends React.Component {
     render = () =>
         <Row>
             {
-                this.props.profile ?
+                this.props.user ?
                     <>
                         <button className={"btn"}>
                             <FontAwesomeIcon icon={faEllipsisV}/>

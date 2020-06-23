@@ -13,7 +13,7 @@ const userReducer = (state=initialState, event) => {
         case "SIGN_OUT":
             return {
                 ...state,
-                user: event.user
+                user: null
             };
         case "SET_ERROR":
             return {

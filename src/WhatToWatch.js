@@ -12,11 +12,7 @@ function WhatToWatch() {
         <div className="App">
             <BrowserRouter>
                 <Route
-                    path='/'
-                    exact={true}
-                    component={HomeComponent}/>
-                <Route
-                    path='/search'
+                    path={['/', '/search', '/logout']}
                     exact={true}
                     component={HomeComponent}/>
                 <Route

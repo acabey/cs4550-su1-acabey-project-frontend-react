@@ -6,6 +6,7 @@ const stateToPropertyMapper = (state, ownProps) => {
     return {
         watchlists: state.watchlistReducer.watchlists,
         selectedWatchlists: state.watchlistReducer.selectedWatchlists,
+        user: state.userReducer.user,
         match: ownProps.match
     }
 };
