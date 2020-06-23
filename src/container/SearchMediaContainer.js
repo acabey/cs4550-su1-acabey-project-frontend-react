@@ -7,6 +7,7 @@ const stateToPropertyMapper = (state, ownProps) => {
     return {
         media: state.mediumReducer.media,
         selectedMedia: state.mediumReducer.selectedMedia,
+        error: state.mediumReducer.error,
         match: ownProps.match
     }
 };
@@ -57,10 +58,18 @@ const dispatchToPropertyMapper = (dispatch) => {
         },
         searchMedia: (title) => {
             MediumService.searchMediaByTitle(title)
-                .then(actualMedia => dispatch({
-                    type: "FIND_MEDIA",
-                    media: actualMedia
-                }))
+                .then(actualMedia => {
+                    !actualMedia.error ?
+                        dispatch({
+                            type: "FIND_MEDIA",
+                            media: actualMedia
+                        })
+                        :
+                        dispatch({
+                            type: "FIND_MEDIA_ERROR",
+                            error: actualMedia
+                        })
+                })
         }
     }
 };

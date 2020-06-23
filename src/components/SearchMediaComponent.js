@@ -5,40 +5,14 @@ import AlertComponent from "./AlertComponent";
 
 class SearchMediaComponent extends React.Component {
 
-    state = {
-        errorMessage: ''
-    };
-
     constructor(props) {
         super(props);
     }
 
-    componentDidMount = () => {
-        if(!this.props.media) {
-            console.error(`Invalid response from server on search`)
-        }
-        else if (this.props.media.error) {
-            this.setState({errorMessage: this.props.media.message})
-        }
-    };
-
-    componentDidUpdate = (prevProps, prevState, snapshot) => {
-        if (this.props.match.params.title !== prevProps.match.params.title) {
-            if(!this.props.media) {
-                console.error(`Invalid response from server on search`)
-            }
-            else if (this.props.media.error) {
-                this.setState({errorMessage: this.props.media.message})
-            }
-        }
-
-    };
-
     render = () =>
-        this.state.errorMessage ?
+        this.props.error ?
             <AlertComponent alertType={'danger'}
-                            message={this.state.errorMessage}
-                            clear={() => {this.setState({errorMessage: ''})}}/>
+                            message={this.props.error.message}/>
             :
             <MediumGridComponent
                 media={this.props.media}/>

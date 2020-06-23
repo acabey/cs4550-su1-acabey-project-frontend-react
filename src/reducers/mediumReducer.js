@@ -1,5 +1,6 @@
 const initialState = {
     media: [],
+    error: ''
 };
 
 const mediumReducer = (state=initialState, event) => {
@@ -29,7 +30,14 @@ const mediumReducer = (state=initialState, event) => {
         case "FIND_MEDIA":
             return {
                 ...state,
-                media: event.media
+                media: event.media,
+                error: ''
+            };
+            break
+        case "FIND_MEDIA_ERROR":
+            return {
+                ...state,
+                error: event.error
             };
             break
         default:
