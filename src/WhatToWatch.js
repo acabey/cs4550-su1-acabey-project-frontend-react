@@ -1,12 +1,10 @@
 import React from 'react';
 import {BrowserRouter, Route} from "react-router-dom";
 import HomeComponent from "./components/HomeComponent";
-import LoginComponent from "./components/LoginComponent";
 import ProfileEditComponent from "./components/ProfileEditComponent";
 import RegisterComponent from "./components/RegisterComponent";
-import SearchMediaContainer from "./container/SearchMediaContainer";
 import LoginContainer from "./container/LoginContainer";
-import LogoutComponent from "./components/LogoutComponent";
+import LogoutContainer from "./container/LogoutContainer";
 
 function WhatToWatch() {
     return (
@@ -19,7 +17,7 @@ function WhatToWatch() {
                 <Route
                     path={'/logout'}
                     exact={true}
-                    component={LogoutComponent}/>
+                    component={LogoutContainer}/>
                 <Route
                     path='/search/:title'
                     exact={true}

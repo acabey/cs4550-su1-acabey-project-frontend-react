@@ -1,0 +1,72 @@
+import {connect} from "react-redux";
+import LoginComponent from "../components/LoginComponent";
+import userService from "../services/userService";
+import LogoutComponent from "../components/LogoutComponent";
+
+const stateToPropertyMapper = (state, ownProps) => {
+    return {
+        user: state.userReducer.user,
+        errorMessage: state.userReducer.errorMessage,
+        match: ownProps.match,
+        history: ownProps.history
+    }
+};
+
+const dispatchToPropertyMapper = (dispatch) => {
+    return {
+        login: (username, password) => {
+            userService.login(username, password)
+                .then(currentUser => {
+                    if (!currentUser) {
+                        console.error("Invalid response body for login")
+                        dispatch({
+                            type: "SET_ERROR",
+                            error: "Null reply on login"
+                        });
+                    }
+                    else if (currentUser.error) {
+                        dispatch({
+                            type: "SET_ERROR",
+                            error: currentUser.message
+                        });
+                    }
+                    else {
+                        dispatch({
+                            type: "SIGN_IN",
+                            user: currentUser
+                        });
+                    }
+                })
+                .catch(e => {
+                    console.error(`Error on login: ${e}`);
+                    dispatch({
+                        type: "SET_ERROR",
+                        error: e
+                    });
+                })
+        },
+        logout: () => {
+            userService.logout()
+                .then(() => {
+                    dispatch({
+                        type: "SIGN_OUT",
+                    });
+                })
+                .catch(() => {
+                });
+        },
+        setError: (message) => {
+            dispatch({
+                type: "SET_ERROR",
+                error: message
+            });
+
+        }
+    }
+};
+
+const LogoutContainer = connect
+(stateToPropertyMapper, dispatchToPropertyMapper)
+(LogoutComponent);
+
+export default LogoutContainer;

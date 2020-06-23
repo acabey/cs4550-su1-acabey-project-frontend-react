@@ -37,6 +37,12 @@ class LoginComponent extends React.Component {
 
     };
 
+    handleKeys = (e) => {
+        if (e.key === "Enter") {
+            this.login();
+        }
+    };
+
     render = () =>
         <div className="container">
 
@@ -56,10 +62,11 @@ class LoginComponent extends React.Component {
                         <div className="col-sm-10">
                             <input className="form-control wbdv-field wbdv-username"
                                    id="username"
-                                   placeholder="Alice"
+                                   placeholder="Username"
                                    onChange={(e) => {
                                        this.setState({username: e.target.value})}
-                                   }/>
+                                   }
+                                   onKeyPress={this.handleKeys}/>
                         </div>
                     </div>
                     <div className="form-group row">
@@ -68,10 +75,11 @@ class LoginComponent extends React.Component {
                         <div className="col-sm-10">
                             <input type="password"
                                    className="form-control wbdv-field wbdv-password"
-                                   id="password" placeholder="123qwe#$%"
+                                   id="password" placeholder="Password"
                                    onChange={(e) => {
                                        this.setState({password: e.target.value})}
-                                   }/>
+                                   }
+                                   onKeyPress={this.handleKeys}/>
                         </div>
                     </div>
                     <div className="form-group row">
