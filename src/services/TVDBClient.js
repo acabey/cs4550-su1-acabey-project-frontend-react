@@ -7,11 +7,11 @@ class TVDBClient {
         username: 'acabey',
     };
     /*
-    {
-      "apikey": "e5094420c444a38c3b46f926de91dde3",
-      "userkey": "5ED01E4096DD78.63651277",
-      "username": "acabey"
-    }
+{
+  "apikey": "e5094420c444a38c3b46f926de91dde3",
+  "userkey": "5ED01E4096DD78.63651277",
+  "username": "acabey"
+}
      */
 
     token = '';
@@ -54,16 +54,9 @@ class TVDBClient {
      * @returns {Promise<any>} Array of JSON course objects
      */
     searchSeries(series) {
-        return fetch(`${this.url}/series`, {
-            method: 'POST',
-            body: JSON.stringify(
-                {
-                    name: series
-                }
-            ),
+        return fetch(`${this.url}/search/${encodeURI(series)}`, {
+            method: 'GET',
             headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${this.token}`
             }
         }).then((response) => {
             return response.json()

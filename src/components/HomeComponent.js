@@ -1,20 +1,20 @@
 import React from "react";
 import {Container} from "react-bootstrap";
-import NavComponent from "./NavComponent";
 import './HomeComponent.css'
 import TopWatchlistContainer from "../container/TopWatchlistsContainer";
 import SearchMediaContainer from "../container/SearchMediaContainer";
+import NavContainer from "../container/NavContainer";
 
 class HomeComponent extends React.Component {
 
     render = () =>
         <Container fluid={true}>
 
-            <NavComponent history={this.props.history} match={this.props.match}/>
+            <NavContainer history={this.props.history} match={this.props.match}/>
 
             {
                 this.props.match.params.title ?
-                <SearchMediaContainer history={this.props.history}/>
+                <SearchMediaContainer history={this.props.history} match={this.props.match}/>
                 :
                 <>
                     <span className={`text-secondary`}>Top Public Watchlists</span>

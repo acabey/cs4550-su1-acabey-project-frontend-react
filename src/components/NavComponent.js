@@ -53,6 +53,7 @@ class NavComponent extends React.Component {
     search = () => {
         if (this.state.searchTerm) {
             this.props.history.push(`/search/${encodeURI(this.state.searchTerm)}`)
+            this.props.searchMedia(this.state.searchTerm);
         }
     };
 

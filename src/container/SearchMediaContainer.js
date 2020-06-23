@@ -7,8 +7,7 @@ const stateToPropertyMapper = (state, ownProps) => {
     return {
         media: state.mediumReducer.media,
         selectedMedia: state.mediumReducer.selectedMedia,
-        params: {match: {title: 'Example'}}
-        //params: ownProps.params,
+        match: ownProps.match
     }
 };
 
