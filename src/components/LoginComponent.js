@@ -8,7 +8,6 @@ class LoginComponent extends React.Component {
     state = {
         username: '',
         password: '',
-        errorMessage: ''
     };
 
     validate = () => {
@@ -32,31 +31,20 @@ class LoginComponent extends React.Component {
 
         if (!this.validate()) return;
 
-        userService.login(this.state.username, this.state.password)
-            .then(currentUser => {
-                if (!currentUser) {
-                    console.error("Invalid response body for login")
-                }
-                else if (currentUser.error) {
-                    this.setState({errorMessage: currentUser.message});
-                }
-                else {
-                    this.props.history.push("/profile")
-                }
-            })
-            .catch(e => {
-                console.error(`Error on login: ${e}`);
-            })
+        this.props.login(this.state.username, this.state.password);
+
+        this.props.history.push('/');
+
     };
 
     render = () =>
         <div className="container">
 
             {
-                this.state.errorMessage &&
-                <AlertComponent message={<><strong>Error! </strong> {this.state.errorMessage}</>}
+                this.props.error &&
+                <AlertComponent message={<><strong>Error! </strong> {this.props.error}</>}
                                 alertType={'danger'}
-                                clear={() => this.setState({errorMessage: ''})}/>
+                                clear={() => this.props.setError('')}/>
             }
 
             <h1>Sign In</h1>

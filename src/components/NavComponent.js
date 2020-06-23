@@ -7,7 +7,6 @@ import userService from "../services/userService";
 class NavComponent extends React.Component {
 
     state = {
-        user: null,
         searchTerm: '',
         errorMessage: '',
     };
@@ -17,24 +16,6 @@ class NavComponent extends React.Component {
         if (this.props.match.params.title) {
             this.setState({searchTerm: decodeURI(this.props.match.params.title)})
         }
-
-        userService.getProfile()
-            .catch(e => {
-                // Error in the request
-            })
-            .then(user => {
-                if(!user) {
-                    // Not logged in
-                }
-                else if (user.error) {
-                    this.setState({errorMessage: user.message})
-                }
-                else {
-                    this.setState({
-                        user: user,
-                    })
-                }
-            })
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -99,7 +80,7 @@ class NavComponent extends React.Component {
                         <FontAwesomeIcon className={`color-primary`} icon={faUserCircle} size={'2x'}/>
                     </button>
                     {
-                        this.state.user ?
+                        this.props.user ?
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <Link className="dropdown-item" to="/profile">Profile</Link>
                                 <Link className="dropdown-item" to="/logout">Logout</Link>

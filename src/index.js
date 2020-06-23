@@ -10,9 +10,10 @@ import {Provider} from "react-redux";
 import watchlistReducer from "./reducers/watchlistReducer";
 import {combineReducers, createStore} from "redux";
 import mediumReducer from "./reducers/mediumReducer";
+import userReducer from "./reducers/userReducer";
 
 const reducers = combineReducers({
-    watchlistReducer, mediumReducer
+    watchlistReducer, mediumReducer, userReducer
 });
 
 const store = createStore(reducers);

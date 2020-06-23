@@ -6,7 +6,8 @@ import NavComponent from "../components/NavComponent";
 const stateToPropertyMapper = (state, ownProps) => {
     return {
         media: state.mediumReducer.media,
-        match: ownProps.match
+        user: state.userReducer.user,
+        match: ownProps.match,
     }
 };
 

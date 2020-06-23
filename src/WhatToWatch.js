@@ -5,6 +5,7 @@ import LoginComponent from "./components/LoginComponent";
 import ProfileEditComponent from "./components/ProfileEditComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import SearchMediaContainer from "./container/SearchMediaContainer";
+import LoginContainer from "./container/LoginContainer";
 
 function WhatToWatch() {
     return (
@@ -25,7 +26,7 @@ function WhatToWatch() {
                 <Route
                     path='/login'
                     exact={true}
-                    component={LoginComponent}/>
+                    component={LoginContainer}/>
                 <Route
                     path='/register'
                     exact={true}
