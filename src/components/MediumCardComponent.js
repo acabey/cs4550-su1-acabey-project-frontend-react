@@ -31,7 +31,7 @@ class MediumCardComponent extends MediumListComponent {
 
 
     render = () =>
-        <div className={``}
+        <div className={`bg-mute-tertiary`}
              onMouseEnter={this.toggleHover}
              onMouseLeave={this.toggleHover}>
             <div className={'card-img-top vh-20'} style={{
@@ -63,7 +63,7 @@ class MediumCardComponent extends MediumListComponent {
                 //     src={`${TVDBUrl}${this.props.medium.image}`}
                 //     alt="Card image cap"/>
             }
-            <div className="card-body ">
+            <div className="card-body border-top">
                 <div>
                     <Tooltip title={`${this.props.medium.title} (${new Date(this.props.medium.firstAired).getFullYear()})`}>
                         <Link to={`/editor/${this.props.medium._id}`}>
