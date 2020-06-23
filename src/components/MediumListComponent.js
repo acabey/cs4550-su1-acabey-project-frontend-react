@@ -13,6 +13,9 @@ class MediumListComponent extends React.Component {
     };
 
     sortMedia = (media) => {
+        if (media.length == 0) {
+            return media;
+        }
         if (this.state.sortDescription === 'AZ_ASC') {
             return this.sortAZasc(media);
         } else {
@@ -21,11 +24,23 @@ class MediumListComponent extends React.Component {
     };
 
     sortAZdesc = (media) => {
-        return media.sort((a, b) => a.seriesName.localeCompare(b.seriesName))
+        return media.sort((a, b) => {
+            if (a.title && b.title) {
+                return a.title.localeCompare(b.title)
+            } else {
+                return 0;
+            }
+        })
     };
 
     sortAZasc = (media) => {
-        return media.sort((a, b) => b.seriesName.localeCompare(a.seriesName))
+        return media.sort((a, b) => {
+            if (a.title && b.title) {
+                return b.title.localeCompare(a.title)
+            } else {
+                return 0;
+            }
+        })
     };
 }
 
