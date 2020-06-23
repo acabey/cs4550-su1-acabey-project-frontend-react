@@ -1,6 +1,8 @@
 import React from "react";
 import userService from "../services/userService";
 import AlertComponent from "./AlertComponent";
+import NavContainer from "../container/NavContainer";
+import {Container} from "react-bootstrap";
 
 class ProfileEditComponent extends React.Component {
 
@@ -110,6 +112,8 @@ class ProfileEditComponent extends React.Component {
 
     render = () =>
         <div className="container">
+            <NavContainer history={this.props.history} match={this.props.match}/>
+
             <h1>Profile</h1>
 
             {
