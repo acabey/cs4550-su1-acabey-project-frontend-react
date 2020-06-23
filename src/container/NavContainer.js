@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import MediumService from "../services/MediumService";
 import mediumReducer from "../reducers/mediumReducer";
 import NavComponent from "../components/NavComponent";
+import userService from "../services/userService";
 
 const stateToPropertyMapper = (state, ownProps) => {
     return {
@@ -26,6 +27,34 @@ const dispatchToPropertyMapper = (dispatch) => {
                             type: "FIND_MEDIA_ERROR",
                             error: actualMedia
                         })
+                })
+        },
+        getProfile: () => {
+            userService.getProfile()
+                .then(foundUser => {
+                    if(!foundUser || foundUser.error) {
+                        // Not signed in
+                    }
+                    else {
+                        dispatch({
+                            type: "SIGN_IN",
+                            user: foundUser
+                        })
+                    }
+                })
+        },
+        logout: () => {
+            userService.logout()
+                .then(foundUser => {
+                    if(!foundUser || foundUser.error) {
+                        // Not signed in
+                    }
+                    else {
+                        dispatch({
+                            type: "SIGN_IN",
+                            user: foundUser
+                        })
+                    }
                 })
         }
     }

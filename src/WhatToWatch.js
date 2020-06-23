@@ -6,15 +6,20 @@ import ProfileEditComponent from "./components/ProfileEditComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import SearchMediaContainer from "./container/SearchMediaContainer";
 import LoginContainer from "./container/LoginContainer";
+import LogoutComponent from "./components/LogoutComponent";
 
 function WhatToWatch() {
     return (
         <div className="App">
             <BrowserRouter>
                 <Route
-                    path={['/', '/search', '/logout']}
+                    path={['/', '/search']}
                     exact={true}
                     component={HomeComponent}/>
+                <Route
+                    path={'/logout'}
+                    exact={true}
+                    component={LogoutComponent}/>
                 <Route
                     path='/search/:title'
                     exact={true}

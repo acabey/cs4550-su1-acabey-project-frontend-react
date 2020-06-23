@@ -12,7 +12,7 @@ class NavComponent extends React.Component {
     };
 
     componentDidMount = () => {
-
+        this.props.getProfile();
         if (this.props.match.params.title) {
             this.setState({searchTerm: decodeURI(this.props.match.params.title)})
         }
@@ -21,6 +21,7 @@ class NavComponent extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.match.params.title !== prevProps.match.params.title) {
             this.setState({searchTerm: decodeURI(this.props.match.params.title)})
+            this.props.getProfile();
         }
     }
 
