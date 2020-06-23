@@ -45,14 +45,14 @@ class MediumCardComponent extends MediumListComponent {
                     <>
                         <Tooltip title="Select" className={'float-left'}>
                             <IconButton aria-label="Add to watchlist" onClick={this.toggleSelected}>
-                                <FontAwesomeIcon className={"color-white"} icon={this.state.selected ? faCheckCircle : faCircle} inverse={true}
-                                                 size={"2x"}/>
+                                <FontAwesomeIcon className={"color-white"} icon={this.state.selected ? faCheckCircle : faCircle} inverse={false}
+                                                 size={"1x"}/>
                             </IconButton>
                         </Tooltip>
 
                         <Tooltip title="Add to watchlist" className={'float-right'}>
                             <IconButton aria-label="Add to watchlist">
-                                <FontAwesomeIcon className={"color-white"} icon={faPlusCircle} inverse={true} size={"2x"}/>
+                                <FontAwesomeIcon className={"color-white"} icon={faPlusCircle} inverse={false} size={"1x"}/>
                             </IconButton>
                         </Tooltip>
                     </>
