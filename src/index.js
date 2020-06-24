@@ -4,8 +4,10 @@ import './index.css';
 import WhatToWatch from './WhatToWatch';
 import * as serviceWorker from './serviceWorker';
 
+import 'jquery/dist/jquery.min'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'popper.js/dist/popper.min'
 import {Provider} from "react-redux";
 import watchlistReducer from "./reducers/watchlistReducer";
 import {combineReducers, createStore} from "redux";

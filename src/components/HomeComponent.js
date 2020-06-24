@@ -43,7 +43,7 @@ class HomeComponent extends React.Component {
                                 <h5 className={`text-secondary`}>My Watchlists</h5>
                                 <TopWatchlistContainer/>
                                 <Tooltip title="Create new watchlist" className={'float-left'}>
-                                    <IconButton aria-label="Create new watchlist" onClick={() => this.createWatchlist}>
+                                    <IconButton aria-label="Create new watchlist" onClick={() => this.createWatchlist()}>
                                         <FontAwesomeIcon className={"color-mute-tertiary"} icon={faPlusCircle} inverse={false}
                                                          size={"2x"}/>
                                     </IconButton>

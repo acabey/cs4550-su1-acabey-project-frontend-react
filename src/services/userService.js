@@ -44,6 +44,12 @@ export const getProfileForUser = (username) =>
         credentials: "include"
     }).then(response => response.json());
 
+export const getProfileById = (userId) =>
+    fetch(`${url}/users/${userId}`, {
+        method: 'GET',
+        credentials: "include"
+    }).then(response => response.json());
+
 export const updateUser = (username, updatedUser) =>
     fetch(`${url}/profile/${username}`, {
         body: JSON.stringify(updatedUser),
@@ -67,5 +73,6 @@ export default {
     getProfile,
     getProfileForUser,
     updateProfile: updateUser,
-    deleteProfileByUsername
+    deleteProfileByUsername,
+    getUserById: getProfileById
 }

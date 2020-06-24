@@ -1,10 +1,7 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
-import {faCheckCircle, faCircle} from "@fortawesome/free-regular-svg-icons";
+import userService from "../services/userService";
 
 const TVDBUrl = 'https://thetvdb.com';
 
@@ -14,9 +11,24 @@ class WatchlistCardComponent extends React.Component {
         super(props);
         this.state = {
             hover: false,
-            selected: false
+            owner: null
         }
     }
+
+    componentDidMount = () => {
+        userService.getUserById(this.props.watchlist.ownerId)
+            .then((ownerResp) => {
+                    if (ownerResp && !ownerResp.error) {
+                        this.setState({owner: ownerResp});
+                    } else {
+                        console.error(`Failed to get user: ${ownerResp.error}`);
+                    }
+                }
+            )
+            .catch((error) => {
+                console.error(`Failed to get user: ${error.toString()}`);
+            })
+    };
 
     toggleHover = () => {
         this.setState({hover: !this.state.hover})
@@ -43,9 +55,9 @@ class WatchlistCardComponent extends React.Component {
             }
             <div className="card-body border-top">
                 <div>
-                    <Tooltip title={`${this.props.watchlist.owner}`}>
+                    <Tooltip title={`${this.props.watchlist.ownerId}`}>
                         <Link to={`/watchlists/${this.props.watchlist.id}`}>
-                            <strong className="text-white">{this.props.watchlist.title}})</strong>
+                            <strong className="text-white">{this.props.watchlist.title}</strong>
                         </Link>
                     </Tooltip>
                 </div>
