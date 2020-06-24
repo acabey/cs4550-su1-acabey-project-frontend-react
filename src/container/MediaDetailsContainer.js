@@ -74,8 +74,8 @@ const dispatchToPropertyMapper = (dispatch) => {
     }
 };
 
-const DetailsContainer = connect
+const MediaDetailsContainer = connect
 (stateToPropertyMapper, dispatchToPropertyMapper)
 (SearchMediaComponent);
 
-export default DetailsContainer;
+export default MediaDetailsContainer;

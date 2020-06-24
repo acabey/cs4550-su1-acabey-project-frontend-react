@@ -25,6 +25,13 @@ class MediumService {
         fetch(`${this.url}/users/${userId}/media`)
             .then(response => response.json());
 
+    findMediaForWatchlist = (watchlistId) =>
+        fetch(`${this.url}/watchlists/${watchlistId}/media`, {
+            method: 'GET',
+            credentials: "include"
+        })
+            .then(response => response.json());
+
     findMediumById = (mediumId) =>
         fetch(`${this.url}/media/${mediumId}`, {
             method: 'GET'

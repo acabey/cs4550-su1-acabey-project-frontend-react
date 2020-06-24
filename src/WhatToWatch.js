@@ -5,7 +5,8 @@ import RegisterComponent from "./components/RegisterComponent";
 import LoginContainer from "./container/LoginContainer";
 import LogoutContainer from "./container/LogoutContainer";
 import HomeContainer from "./container/HomeContainer";
-import DetailsContainer from "./container/DetailsContainer";
+import MediaDetailsContainer from "./container/MediaDetailsContainer";
+import WatchlistDetailsContainer from "./container/WatchlistDetailsContainer";
 
 function WhatToWatch() {
     return (
@@ -38,7 +39,11 @@ function WhatToWatch() {
                 <Route
                     path='/details/:mediaId'
                     exact={true}
-                    component={DetailsContainer}/>
+                    component={MediaDetailsContainer}/>
+                <Route
+                    path='/watchlists/:watchlistId'
+                    exact={true}
+                    component={WatchlistDetailsContainer}/>
             </BrowserRouter>
         </div>
 );
