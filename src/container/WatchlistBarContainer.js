@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import WatchlistService from "../services/WatchlistService";
 import WatchlistBarComponent from "../components/WatchlistBarComponent";
 import userService from "../services/userService";
+import MediumService from "../services/MediumService";
 
 const stateToPropertyMapper = (state, ownProps) => {
     return {
@@ -14,6 +15,24 @@ const stateToPropertyMapper = (state, ownProps) => {
 
 const dispatchToPropertyMapper = (dispatch) => {
     return {
+        watchMedia: (watchlistId, media) => {
+            for (let i = 0; i < media.length; i++)  {
+                let medium = media[i];
+                WatchlistService.watchMedium(watchlistId, medium)
+                    .then((resp) => {
+                        if(!resp || resp.error) {
+                            // Not signed in
+                        }
+                        else {
+                            dispatch({
+                                type: "WATCH_MEDIUM",
+                                watchlistId: watchlistId,
+                                medium: medium
+                            })
+                        }
+                    })
+            }
+        },
         getProfile: () => {
             userService.getProfile()
                 .then(foundUser => {

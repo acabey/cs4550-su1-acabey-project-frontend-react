@@ -4,6 +4,11 @@ import './HomeComponent.css'
 import TopWatchlistContainer from "../container/TopWatchlistsContainer";
 import SearchMediaContainer from "../container/SearchMediaContainer";
 import NavContainer from "../container/NavContainer";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCheckCircle, faCircle} from "@fortawesome/free-regular-svg-icons";
+import {faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 
 class HomeComponent extends React.Component {
 
@@ -14,14 +19,10 @@ class HomeComponent extends React.Component {
         }
     };
 
-    componentDidUpdate = (prevProps, prevState, snapshot) => {
-        if (prevProps !== this.props) {
-
-            this.props.getProfile();
-            if (this.props.user) {
-                this.props.findWatchlistsForUser(this.props.user.id);
-            }
-        }
+    createWatchlist = () => {
+        this.props.createWatchlist(this.props.user.id, {
+            title: 'New Watchlist'
+        })
     };
 
     render = () =>
@@ -41,6 +42,12 @@ class HomeComponent extends React.Component {
                             <>
                                 <h5 className={`text-secondary`}>My Watchlists</h5>
                                 <TopWatchlistContainer/>
+                                <Tooltip title="Create new watchlist" className={'float-left'}>
+                                    <IconButton aria-label="Create new watchlist" onClick={() => this.createWatchlist}>
+                                        <FontAwesomeIcon className={"color-mute-tertiary"} icon={faPlusCircle} inverse={false}
+                                                         size={"2x"}/>
+                                    </IconButton>
+                                </Tooltip>
                             </>
                         }
                     </>

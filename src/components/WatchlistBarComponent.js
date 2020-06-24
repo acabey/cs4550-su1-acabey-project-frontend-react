@@ -17,16 +17,6 @@ class WatchlistBarComponent extends React.Component {
         }
     };
 
-    componentDidUpdate = (prevProps, prevState, snapshot) => {
-        if (prevProps !== this.props) {
-
-            this.props.getProfile();
-            if (this.props.user) {
-                this.props.findWatchlistsForUser(this.props.user.id);
-            }
-        }
-    };
-
     render = () =>
         <Row>
             {
