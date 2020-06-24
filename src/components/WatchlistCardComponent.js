@@ -55,7 +55,7 @@ class WatchlistCardComponent extends React.Component {
             }
             <div className="card-body border-top">
                 <div>
-                    <Tooltip title={`${this.props.watchlist.ownerId}`}>
+                    <Tooltip title={`${this.state.owner ? this.state.owner.username : this.props.watchlist.id}`}>
                         <Link to={`/watchlists/${this.props.watchlist.id}`}>
                             <strong className="text-white">{this.props.watchlist.title}</strong>
                         </Link>
