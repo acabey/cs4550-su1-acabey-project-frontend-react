@@ -58,14 +58,21 @@ const dispatchToPropertyMapper = (dispatch) => {
         },
         updateWatchlist: (watchlistId, newWatchlistData) => {
             newWatchlistData.id = watchlistId; // Ensure proper ID is set in the replacement
+
             WatchlistService.updateWatchlist(watchlistId, newWatchlistData)
-                .then(didUpdate => {
-                    if (didUpdate)
+                .then(updatedWidget => {
+                    if (updatedWidget && !updatedWidget.error)
                         dispatch({
                             type: 'UPDATE_WATCHLIST',
                             watchlistId: watchlistId,
                             updatedWatchlist: newWatchlistData
-                        })
+                        });
+                    else {
+                        console.error(`Failed to update widget ${updatedWidget.error}`)
+                    }
+                })
+                .catch((error) => {
+                    console.error(`Failed to update widget ${error.toString()}`)
                 })
         },
         createWatchlist: (userId, newWatchlist) => {

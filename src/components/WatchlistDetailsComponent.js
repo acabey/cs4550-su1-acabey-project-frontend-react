@@ -5,14 +5,15 @@ import MediumGridComponent from "./MediumGridComponent";
 import userService from "../services/userService";
 import WatchlistService from "../services/WatchlistService";
 import {Link} from "react-router-dom";
-import {faBan, faPencilAlt} from "@fortawesome/free-solid-svg-icons";
+import {faBan, faCheck, faPencilAlt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class WatchlistDetailsComponent extends React.Component {
 
     state = {
         owner: null,
-        isEditing: false
+        isEditing: false,
+        updatedTitle: ''
     };
 
     constructor(props) {
@@ -20,11 +21,31 @@ class WatchlistDetailsComponent extends React.Component {
     }
 
     toggleEditing = () => {
-        this.setState({isEditing: !this.state.isEditing})
-    }
+        if (!this.state.isEditing) {
+            this.setState({
+                isEditing: !this.state.isEditing,
+                updatedTitle: this.props.watchlist.title
+            })
+        } else {
+            this.setState({
+                isEditing: !this.state.isEditing,
+            });
+            this.save();
+        }
+    };
+
+    save = () => {
+        this.props.updateWatchlist(this.props.match.params.watchlistId, {
+            ...this.props.watchlist,
+            title: this.state.updatedTitle
+        })
+    };
 
     componentDidMount = () => {
-        this.props.setWatchlist(this.props.match.params.watchlistId);
+
+        if (!this.props.watchlist) {
+            this.props.setWatchlist(this.props.match.params.watchlistId);
+        }
 
         this.props.findMediaForWatchlist(this.props.match.params.watchlistId);
 
@@ -52,13 +73,16 @@ class WatchlistDetailsComponent extends React.Component {
                 !this.state.isEditing ?
                     <span><h4>{this.props.watchlist.title}</h4></span>
                     :
-                    <span>
-                        <input className={"form-control"} type={"text"} />
-                        <button className={"btn"} onClick={() => this.toggleEditing}>
-                            <FontAwesomeIcon icon={this.state.isEditing ? faPencilAlt : faBan}/>
-                        </button>
-                    </span>
+                    <span><input className={"form-control"}
+                                 type={"text"}
+                                 value={this.state.updatedTitle}
+                                 onChange={(e) => {
+                                     this.setState({updatedTitle: e.target.value})}
+                                 }/></span>
             }
+                <button className={"btn"} onClick={this.toggleEditing}>
+                    <FontAwesomeIcon icon={this.state.isEditing ? faCheck : faPencilAlt }/>
+                </button>
             </span>
             <Link to={`/profile/${this.state.owner ? this.state.owner.username : ""}`}>
                 <span className={"text-black font-italic"}>{this.state.owner ? this.state.owner.username : ""}</span>
