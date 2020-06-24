@@ -3,10 +3,12 @@ import WatchlistService from "../services/WatchlistService";
 import userService from "../services/userService";
 import WatchlistListComponent from "../components/WatchlistListComponent";
 import MediumService from "../services/MediumService";
+import WatchlistDetailsComponent from "../components/WatchlistDetailsComponent";
 
 const stateToPropertyMapper = (state, ownProps) => {
     return {
         watchlists: state.watchlistReducer.watchlists,
+        watchlist: state.watchlistReducer.watchlists[0],
         selectedWatchlists: state.watchlistReducer.selectedWatchlists,
         media: state.mediumReducer.media,
         user: state.userReducer.user,
@@ -45,6 +47,13 @@ const dispatchToPropertyMapper = (dispatch) => {
                 .then(actualWatchlists => dispatch({
                     type: 'FIND_WATCHLISTS',
                     watchlists: actualWatchlists
+                }))
+        },
+        setWatchlist: (watchlistId) => {
+            WatchlistService.findWatchlistById(watchlistId)
+                .then(actualWatchlist => dispatch({
+                    type: 'FIND_WATCHLISTS',
+                    watchlists: [actualWatchlist]
                 }))
         },
         updateWatchlist: (watchlistId, newWatchlistData) => {
@@ -99,6 +108,6 @@ const dispatchToPropertyMapper = (dispatch) => {
 
 const WatchlistDetailsContainer = connect
 (stateToPropertyMapper, dispatchToPropertyMapper)
-(WatchlistListComponent);
+(WatchlistDetailsComponent);
 
 export default WatchlistDetailsContainer;
