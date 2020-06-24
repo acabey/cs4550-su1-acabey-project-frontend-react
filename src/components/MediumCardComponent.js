@@ -66,7 +66,7 @@ class MediumCardComponent extends MediumListComponent {
             <div className="card-body border-top">
                 <div>
                     <Tooltip title={`${this.props.medium.title} (${new Date(this.props.medium.firstAired).getFullYear()})`}>
-                        <Link to={`/editor/${this.props.medium._id}`}>
+                        <Link to={`/details/${this.props.medium.tvdbId}`}>
                             <strong className="text-white">{this.props.medium.title} ({new Date(this.props.medium.firstAired).getFullYear()})</strong>
                         </Link>
                     </Tooltip>

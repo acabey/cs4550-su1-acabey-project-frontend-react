@@ -1,33 +1,19 @@
 import {connect} from "react-redux";
 import WatchlistService from "../services/WatchlistService";
-import WatchlistBarComponent from "../components/WatchlistBarComponent";
-import userService from "../services/userService";
+import watchlistReducer from "../reducers/watchlistReducer";
+import WatchlistListComponent from "../components/WatchlistListComponent";
 
 const stateToPropertyMapper = (state, ownProps) => {
     return {
         watchlists: state.watchlistReducer.watchlists,
-        selectedWatchlists: state.watchlistReducer.selectedWatchlists,
+        editingWatchlist: state.watchlistReducer.editingWatchlist,
         user: state.userReducer.user,
-        match: ownProps.match
+        params: ownProps.params,
     }
 };
 
 const dispatchToPropertyMapper = (dispatch) => {
     return {
-        getProfile: () => {
-            userService.getProfile()
-                .then(foundUser => {
-                    if(!foundUser || foundUser.error) {
-                        // Not signed in
-                    }
-                    else {
-                        dispatch({
-                            type: "SIGN_IN",
-                            user: foundUser
-                        })
-                    }
-                })
-        },
         findWatchlistsForUser: (userId) =>  {
             WatchlistService.findWatchlistsForUser(userId)
                 .then(watchlistsForUser => dispatch({
@@ -70,18 +56,12 @@ const dispatchToPropertyMapper = (dispatch) => {
                     type: "DELETE_WATCHLIST",
                     watchlistId: watchlistId
                 }))
-        },
-        selectWatchlists: (watchlistIds) => {
-            dispatch({
-                type: "SELECT_WATCHLISTS",
-                media: watchlistIds
-            })
         }
     }
 };
 
-const WatchlistBarContainer = connect
+const TopWatchlistContainer = connect
 (stateToPropertyMapper, dispatchToPropertyMapper)
-(WatchlistBarComponent);
+(WatchlistListComponent);
 
-export default WatchlistBarContainer;
+export default TopWatchlistContainer;

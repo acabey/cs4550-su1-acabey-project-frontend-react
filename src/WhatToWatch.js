@@ -1,10 +1,11 @@
 import React from 'react';
 import {BrowserRouter, Route} from "react-router-dom";
-import HomeComponent from "./components/HomeComponent";
 import ProfileEditComponent from "./components/ProfileEditComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import LoginContainer from "./container/LoginContainer";
 import LogoutContainer from "./container/LogoutContainer";
+import HomeContainer from "./container/HomeContainer";
+import DetailsContainer from "./container/DetailsContainer";
 
 function WhatToWatch() {
     return (
@@ -13,7 +14,7 @@ function WhatToWatch() {
                 <Route
                     path={['/', '/search']}
                     exact={true}
-                    component={HomeComponent}/>
+                    component={HomeContainer}/>
                 <Route
                     path={'/logout'}
                     exact={true}
@@ -21,7 +22,7 @@ function WhatToWatch() {
                 <Route
                     path='/search/:title'
                     exact={true}
-                    component={HomeComponent}/>
+                    component={HomeContainer}/>
                 <Route
                     path='/login'
                     exact={true}
@@ -34,6 +35,10 @@ function WhatToWatch() {
                     path='/profile'
                     exact={true}
                     component={ProfileEditComponent}/>
+                <Route
+                    path='/details/:mediaId'
+                    exact={true}
+                    component={DetailsContainer}/>
             </BrowserRouter>
         </div>
 );

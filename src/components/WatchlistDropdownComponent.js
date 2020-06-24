@@ -3,7 +3,7 @@ import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import React from "react";
 
-const WatchlistDropdownComponent = () =>
+const WatchlistDropdownComponent = ({watchlists}) =>
     <></>
 
 export default WatchlistDropdownComponent

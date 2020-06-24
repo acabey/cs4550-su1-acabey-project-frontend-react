@@ -41,6 +41,14 @@ input, select, textarea{
   background-color: #AC3B61;
 }
 
+.bg-mute-dropdown {
+  background-color: #736d6f !important;
+}
+
+.bg-mute-dropdown-select:hover {
+  background-color: #80797b !important;
+}
+
 .text-mute-light {
   text-color: #EEE2DC;
 }
